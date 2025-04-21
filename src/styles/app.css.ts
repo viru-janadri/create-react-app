@@ -51,7 +51,6 @@ export const header = style({
 
 export const content = style({
   gridArea: "content",
-  padding: `${SPACING.xl} ${SPACING.lg}`,
   overflowY: "auto",
   backgroundColor: 'var(--color-background-primary)',
 });
@@ -160,7 +159,7 @@ export const moreDevicesButton = style({
 // Patient Detail View Styles
 export const patientInfoBanner = style({
   padding: SPACING.md,
-  backgroundColor: COLORS.primary,
+  backgroundColor: COLORS.lightBlue,
   borderBottom: '1px solid rgba(255, 255, 255, 0.2)',
   width: '100%',
   display: 'flex',

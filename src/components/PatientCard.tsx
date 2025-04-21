@@ -44,6 +44,12 @@ const RED_ALARMS = [
   'NBP High'
 ];
 
+const YELLOW_ALARMS = [
+  'Near End Of Infusion',
+  'End: Near End Of Infusion',
+  
+];
+
 // Define normal readings
 const NORMAL_READINGS = {
   'P1': 'Amiodarone 10 ng/mL/min',

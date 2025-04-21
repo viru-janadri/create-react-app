@@ -7,7 +7,8 @@ import {
   Text,
   TabContext,
   Tabs,
-  Button
+  Button,
+  H4
 } from "@filament/react";
 import {
   GenderMale,
@@ -173,14 +174,13 @@ const PatientDetailView: React.FC<PatientDetailViewProps> = ({
       {/* Improved Patient Info Banner - Full width with proper spacing */}
       <div className={styles.patientInfoBanner} style={{ 
         width: '100%', 
-        padding: '0.75rem 1.5rem',
         display: 'flex',
         justifyContent: 'space-between'
       }}>
-        <FlexBox alignItems="center" gap={16} style={{ width: '96%', justifyContent: 'space-between' }}>
-          <H3>PATIENT {patientData.id}</H3>
+        <FlexBox alignItems="center" gap={16} style={{ width: '98%', justifyContent: 'space-between' }}>
+          <H4>PATIENT {patientData.id}</H4>
           
-          <FlexBox alignItems="center" gap={32} style={{ flexWrap: 'wrap' }}>
+          <FlexBox alignItems="center" gap={36} style={{ flexWrap: 'wrap' }}>
             {/* Group 1 - Gender, Age, ID */}
             <FlexBox alignItems="center" gap={8}>
               {patientData.gender === 'Male' ? 
