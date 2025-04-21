@@ -240,7 +240,7 @@ const SearchPatientPage: React.FC<SearchPatientPageProps> = ({
                 <TextArea 
                   id="firstName"
                   value={firstName}
-                  onChange={(e: ChangeEvent<HTMLInputElement>) => setFirstName(e.target.value)}
+                  onChange={(value: string) => setFirstName(value)}
                   placeholder="Enter first name"
                 />
               </FlexBox>
@@ -250,7 +250,7 @@ const SearchPatientPage: React.FC<SearchPatientPageProps> = ({
                 <TextArea 
                   id="lastName"
                   value={lastName}
-                  onChange={(e: ChangeEvent<HTMLInputElement>) => setLastName(e.target.value)}
+                  onChange={(value: string) => setLastName(value)}
                   placeholder="Enter last name"
                 />
               </FlexBox>

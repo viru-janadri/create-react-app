@@ -205,19 +205,19 @@ export default function App() {
                   <FlexBox alignItems="center" gap={36} style={{ flexWrap: 'wrap' }}>
                     {/* Group 4 - ADM */}
                     <FlexBox alignItems="center" gap={8}>
-                      <PersonPortraitCircle className={iconSmall} />
+                      <PersonPortraitCircle />
                       <Label>ADM</Label>
                     </FlexBox>
                     
                     {/* Group 5 - ICU CENTRAL */}
                     <FlexBox alignItems="center" gap={8}>
-                      <Laptop className={iconSmall} />
+                      <Laptop />
                       <Label>ICU CENTRAL</Label>
                     </FlexBox>
                     
                     {/* Group 6 - Time and Date */}
                     <FlexBox alignItems="center" gap={8}>
-                      <Clock className={iconSmall} />
+                      <Clock />
                       <FlexBox flexDirection="column">
                         <Label>{new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</Label>
                         <Label>{new Date().toLocaleDateString([], { day: '2-digit', month: 'short', year: 'numeric' }).toUpperCase()}</Label>
@@ -225,7 +225,7 @@ export default function App() {
                     </FlexBox>
                     
                     {/* Group 7 - Question mark */}
-                    <QuestionmarkCircleOutline className={iconSmall} />
+                    <QuestionmarkCircleOutline />
                   </FlexBox>
                 </FlexBox>
               </div>
