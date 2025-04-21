@@ -162,6 +162,16 @@ export const patientInfoBanner = style({
   padding: SPACING.md,
   backgroundColor: COLORS.primary,
   borderBottom: '1px solid rgba(255, 255, 255, 0.2)',
+  width: '100%',
+  display: 'flex',
+  justifyContent: 'space-between',
+  flexWrap: 'wrap',
+  alignItems: 'center',
+  '@media': {
+    '(max-width: 1200px)': {
+      padding: SPACING.sm,
+    }
+  }
 });
 
 export const patientDetailBody = style({
@@ -175,6 +185,12 @@ export const patientDetailColumns = style({
   gridTemplateColumns: '1fr 1fr',
   gap: SPACING.lg,
   padding: SPACING.md,
+  '@media': {
+    '(max-width: 1024px)': {
+      gridTemplateColumns: '1fr',
+      gap: SPACING.md,
+    }
+  }
 });
 
 export const patientDetailLeftColumn = style({
@@ -197,13 +213,20 @@ export const patientDetailRightColumn = style({
   overflowY: 'auto',
 });
 
+// Improved patient detail header
 export const patientDetailHeader = style({
-  marginBottom: SPACING.md,
-  padding: SPACING.sm,
+  width: '100%',
+  padding: `${SPACING.sm} ${SPACING.md}`,
   borderBottom: `1px solid ${COLORS.neutral20}`,
+  display: 'flex',
+  justifyContent: 'space-between',
+  alignItems: 'center',
+  backgroundColor: 'var(--color-background-primary)',
+  marginBottom: SPACING.md,
 });
 
 export const rightColumnHeader = style({
+  width: '100%',
   marginBottom: SPACING.md,
   display: 'flex',
   justifyContent: 'space-between',
@@ -212,14 +235,19 @@ export const rightColumnHeader = style({
 
 export const deviceSection = style({
   marginBottom: SPACING.md,
+  width: '100%',
 });
 
 export const deviceReadings = style({
   marginLeft: SPACING.xl,
+  width: 'calc(100% - 2.5rem)',
 });
 
 export const readingLine = style({
   padding: `${SPACING.xs} 0`,
+  display: 'flex',
+  justifyContent: 'space-between',
+  width: '100%',
 });
 
 export const moreDevices = style({
@@ -231,8 +259,8 @@ export const moreDevices = style({
 export const filterSection = style({
   marginBottom: SPACING.lg,
   padding: SPACING.sm,
-  backgroundColor: COLORS.lightBlue,
   borderRadius: '4px',
+  width: '100%',
 });
 
 export const activeFilter = style({
@@ -265,7 +293,9 @@ export const timeColumn = style({
 });
 
 export const deviceColumn = style({
-  
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center',
 });
 
 export const descriptionColumn = style({
@@ -297,15 +327,14 @@ globalStyle(".warning-value", {
   fontWeight: TYPOGRAPHY.fontWeightBold,
 });
 
-// Add these new styles to src/styles/app.css.ts
-
-// Icon display fix
+// Add these new styles for responsive layout
 export const iconDisplay = style({
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
   width: '24px',
   height: '24px',
+  flexShrink: 0,
 });
 
 // Patient Detail View Tab Structure
@@ -329,12 +358,21 @@ export const filterRow = style({
   alignItems: 'center',
   gap: SPACING.md,
   marginBottom: SPACING.sm,
+  flexWrap: 'wrap',
+  '@media': {
+    '(max-width: 768px)': {
+      flexDirection: 'column',
+      alignItems: 'flex-start',
+    }
+  }
 });
 
 export const filterLabel = style({
   minWidth: '60px',
+  flexShrink: 0,
 });
 
 export const filterTabsContainer = style({
   flex: 1,
+  overflowX: 'auto',
 });

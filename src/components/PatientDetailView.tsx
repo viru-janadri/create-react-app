@@ -176,58 +176,96 @@ const PatientDetailView: React.FC<PatientDetailViewProps> = ({
 
   return (
     <>
-      {/* Patient Info Banner */}
-      <div className={styles.patientInfoBanner}>
-        <FlexBox alignItems="center" gap={16}>
+      {/* Improved Patient Info Banner - Full width with proper spacing */}
+      <div className={styles.patientInfoBanner} style={{ 
+        width: '100%', 
+        padding: '0.75rem 1.5rem',
+        display: 'flex',
+        justifyContent: 'space-between'
+      }}>
+        <FlexBox alignItems="center" gap={16} style={{ width: '96%', justifyContent: 'space-between' }}>
           <H3>PATIENT {patientData.id}</H3>
-          <FlexBox alignItems="center" gap={8}>
-            {patientData.gender === 'Male' ? 
-              <GenderMale className={iconSmall} /> : 
-              <GenderFemale className={iconSmall} />
-            }
-            <FlexBox flexDirection="column">
-              <Label>Age: {patientData.age}  Day: {patientData.days}</Label>
-              <Label>ID: {patientData.id}</Label>
+          
+          <FlexBox alignItems="center" gap={32} style={{ flexWrap: 'wrap' }}>
+            {/* Group 1 - Gender, Age, ID */}
+            <FlexBox alignItems="center" gap={8}>
+              {patientData.gender === 'Male' ? 
+                <GenderMale /> : 
+                <GenderFemale />
+              }
+              <FlexBox flexDirection="column" style={{ minWidth: '165px' }}>
+                <Label>Age: {patientData.age}  Day: {patientData.days}</Label>
+                <Label>ID: {patientData.id}</Label>
+              </FlexBox>
             </FlexBox>
-          </FlexBox>
-          <FlexBox alignItems="center" gap={8}>
-            <Bed className={iconSmall} style={{ display: 'block', color: 'currentColor' }} />
-            <Label>ICU {patientData.icuBed}</Label>
-          </FlexBox>
-          <InformationCircleOutline className={iconSmall} style={{ display: 'block', color: 'currentColor' }} />
-          <FlexBox alignItems="center" gap={8}>
-            <PersonPortraitCircle className={iconSmall} style={{ display: 'block', color: 'currentColor' }} />
-            <Label>ADM</Label>
-          </FlexBox>
-          <FlexBox alignItems="center" gap={8}>
-            <Laptop className={iconSmall} style={{ display: 'block', color: 'currentColor' }} />
-            <Label>ICU CENTRAL</Label>
-          </FlexBox>
-          <FlexBox alignItems="center" gap={8}>
-            <Clock className={iconSmall} style={{ display: 'block', color: 'currentColor' }} />
-            <FlexBox flexDirection="column">
-              <Label>{patientData.time}</Label>
-              <Label>{patientData.date}</Label>
+
+            {/* Group 2 - ICU */}
+            <FlexBox alignItems="center" gap={8}>
+              <Bed />
+              <Label>ICU {patientData.icuBed}</Label>
             </FlexBox>
+            
+            {/* Group 3 - Information circle */}
+            <FlexBox alignItems="center" gap={8}>
+              <InformationCircleOutline />
+            </FlexBox>
+
+            {/* Group 4 - ADM */}
+            <FlexBox alignItems="center" gap={8}>
+              <PersonPortraitCircle />
+              <Label>ADM</Label>
+            </FlexBox>
+            
+            {/* Group 5 - ICU CENTRAL */}
+            <FlexBox alignItems="center" gap={8}>
+              <Laptop />
+              <Label>ICU CENTRAL</Label>
+            </FlexBox>
+            
+            {/* Group 6 - Time and Date */}
+            <FlexBox alignItems="center" gap={8}>
+              <Clock />
+              <FlexBox flexDirection="column">
+                <Label>{patientData.time}</Label>
+                <Label>{patientData.date}</Label>
+              </FlexBox>
+            </FlexBox>
+            
+            {/* Group 7 - Question mark */}
+            <QuestionmarkCircleOutline />
           </FlexBox>
-          <QuestionmarkCircleOutline className={iconSmall} style={{ display: 'block', color: 'currentColor' }} />
         </FlexBox>
       </div>
+      <hr className={separatorHorizontal} style={{ margin: '0.5rem 0' }} />
 
-      {/* Patient Detail Body */}
+      {/* Patient Detail Body - Two-column layout */}
       <div className={styles.patientDetailColumns}>
         {/* Left Column - Patient Vitals */}
         <div className={styles.patientDetailLeftColumn}>
-          <FlexBox alignItems="center" justifyContent="space-between" className={styles.patientDetailHeader}>
-            <FlexBox alignItems="center" gap={8}>
-              <H3>{patientData.id}</H3>
-              <FlexBox alignItems="center" gap={4}>
-                <Label>Patient {patientData.id}</Label>
-                <Label variant="descriptor">{patientData.gender} {patientData.age.split(' ')[0]}y</Label>
-                <Label variant="descriptor">MRN: {patientData.mrn}</Label>
+          {/* Improved patient ID header with full width and separator */}
+          <div style={{ width: '100%', marginBottom: '0.75rem' }}>
+            <FlexBox 
+              alignItems="center" 
+              justifyContent="space-between" 
+              style={{ 
+                width: '100%', 
+                padding: '0.5rem 0.75rem',
+                backgroundColor: 'var(--color-background-primary)'
+              }}
+            >
+              
+              <FlexBox alignItems="center" gap={32}>
+                <H3>{patientData.id}</H3>
+                <FlexBox alignItems="center" gap={100}>
+                  <Label>Patient {patientData.id}</Label>
+                  <Label variant="descriptor">{patientData.gender} {patientData.age.split(' ')[0]}y</Label>
+                  <Label variant="descriptor">MRN: {patientData.mrn}</Label>
+                </FlexBox>
               </FlexBox>
             </FlexBox>
-          </FlexBox>
+            {/* Horizontal separator below the header */}
+            <hr className={separatorHorizontal} style={{ margin: '0.5rem 0' }} />
+          </div>
 
           {/* AGW Section */}
           <div className={styles.deviceSection}>
