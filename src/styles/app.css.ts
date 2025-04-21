@@ -161,7 +161,6 @@ export const moreDevicesButton = style({
 export const patientInfoBanner = style({
   padding: SPACING.md,
   backgroundColor: COLORS.primary,
-  color: 'white',
   borderBottom: '1px solid rgba(255, 255, 255, 0.2)',
 });
 

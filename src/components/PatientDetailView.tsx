@@ -182,8 +182,8 @@ const PatientDetailView: React.FC<PatientDetailViewProps> = ({
           <H3>PATIENT {patientData.id}</H3>
           <FlexBox alignItems="center" gap={8}>
             {patientData.gender === 'Male' ? 
-              <GenderMale className={iconSmall} style={{ display: 'block', color: 'currentColor' }} /> : 
-              <GenderFemale className={iconSmall} style={{ display: 'block', color: 'currentColor' }} />
+              <GenderMale className={iconSmall} /> : 
+              <GenderFemale className={iconSmall} />
             }
             <FlexBox flexDirection="column">
               <Label>Age: {patientData.age}  Day: {patientData.days}</Label>
