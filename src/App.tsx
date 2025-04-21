@@ -1,7 +1,6 @@
 import {
   Brightness,
   Moon,
-  PersonPortraitCircle,
   PhilipsWordMark,
 } from "@filament-icons/dls4-react";
 import {
@@ -9,7 +8,6 @@ import {
 } from "@filament-theme/atomics";
 import { base } from "@filament-theme/base";
 import {
-  Avatar,
   Button,
   Dropdown,
   FlexBox,

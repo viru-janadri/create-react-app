@@ -3,12 +3,10 @@ import {
   FlexBox,
   H3,
   Label,
-  H1,
   Item,
   Text,
   TabContext,
   Tabs,
-  TabPanels,
   Button
 } from "@filament/react";
 import {
@@ -109,10 +107,6 @@ const PatientDetailView: React.FC<PatientDetailViewProps> = ({
   // Selected tab state
   const [selectedTab, setSelectedTab] = useState('alarms');
 
-  // Handle tab selection
-  const handleTabChange = (key: string | number) => {
-    setSelectedTab(String(key));
-  };
 
   // Get device icon based on device type
   const getDeviceIcon = (deviceType: string, addressed: boolean) => {

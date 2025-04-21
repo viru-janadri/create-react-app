@@ -193,27 +193,29 @@ export const patientDetailColumns = style({
   }
 });
 
+
 export const patientDetailLeftColumn = style({
   backgroundColor: 'var(--color-background-secondary)',
-  border: `1px solid ${COLORS.neutral20}`,
+  border: '1px solid black',
   borderRadius: '4px',
   padding: SPACING.md,
   height: 'fit-content',
   maxHeight: 'calc(100vh - 160px)',
   overflowY: 'auto',
+  boxShadow: '0 1px 3px rgba(0, 0, 0, 0.1)',
 });
 
 export const patientDetailRightColumn = style({
   backgroundColor: 'var(--color-background-secondary)',
-  border: `1px solid ${COLORS.neutral20}`,
+  border: '1px solid black',
   borderRadius: '4px',
   padding: SPACING.md,
   height: 'fit-content',
   maxHeight: 'calc(100vh - 160px)',
   overflowY: 'auto',
+  boxShadow: '0 1px 3px rgba(0, 0, 0, 0.1)',
 });
 
-// Improved patient detail header
 export const patientDetailHeader = style({
   width: '100%',
   padding: `${SPACING.sm} ${SPACING.md}`,
@@ -276,7 +278,7 @@ export const alarmTable = style({
 export const tableHeader = style({
   display: 'grid',
   gridTemplateColumns: '80px 80px 1fr',
-  backgroundColor: COLORS.neutral10,
+  backgroundColor: COLORS.shadow,
   padding: SPACING.sm,
   fontWeight: TYPOGRAPHY.fontWeightBold,
 });
