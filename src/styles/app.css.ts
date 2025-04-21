@@ -377,3 +377,57 @@ export const filterTabsContainer = style({
   flex: 1,
   overflowX: 'auto',
 });
+
+// Add these styles to your src/styles/app.css.ts file
+
+// Search page styles
+export const searchContainer = style({
+  padding: SPACING.md,
+  display: 'flex',
+  flexDirection: 'column',
+  gap: SPACING.md,
+});
+
+export const searchForm = style({
+  backgroundColor: 'var(--color-background-secondary)',
+  padding: SPACING.md,
+  borderRadius: '4px',
+  border: `1px solid ${COLORS.borderLight}`,
+  marginBottom: SPACING.md,
+});
+
+export const searchResults = style({
+  backgroundColor: 'var(--color-background-secondary)',
+  padding: SPACING.md,
+  borderRadius: '4px',
+  border: `1px solid ${COLORS.borderLight}`,
+});
+
+export const resultHeader = style({
+  display: 'flex',
+  padding: `${SPACING.sm} 0`,
+  borderBottom: `1px solid ${COLORS.borderLight}`,
+  fontWeight: TYPOGRAPHY.fontWeightBold,
+});
+
+export const resultRow = style({
+  display: 'flex',
+  padding: `${SPACING.sm} 0`,
+  borderBottom: `1px solid ${COLORS.neutral10}`,
+  cursor: 'pointer',
+  ':hover': {
+    backgroundColor: COLORS.neutral10,
+  }
+});
+
+export const resultCell = style({
+  padding: `0 ${SPACING.xs}`,
+});
+
+// Patient search button styles
+export const patientSearchButton = style({
+  display: 'flex',
+  alignItems: 'center',
+  gap: SPACING.xs,
+  fontWeight: TYPOGRAPHY.fontWeightBold,
+});
