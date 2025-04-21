@@ -9,7 +9,6 @@ import {
 } from "@filament-icons/dls4-react";
 import {
   backgroundPrimary,
-  iconSmall,
   separatorHorizontal
 } from "@filament-theme/atomics";
 import { base } from "@filament-theme/base";

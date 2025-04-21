@@ -1,23 +1,22 @@
-import React, { useState, ChangeEvent } from 'react';
+import React, { useState } from 'react';
 import {
   FlexBox,
   Button,
   Label,
   Text,
-  TextArea,
+  TextBox,
   H3,
   Item,
-  SearchBox,
+  Dropdown,
+  DatePicker
 } from "@filament/react";
 import {
   PersonPortraitCircle,
   Laptop,
   Clock,
   QuestionmarkCircleOutline,
-  Search,
-  Filter
 } from "@filament-icons/dls4-react";
-import { iconSmall, separatorHorizontal } from "@filament-theme/atomics";
+import { separatorHorizontal } from "@filament-theme/atomics";
 import * as styles from "../styles";
 
 interface SearchPatientPageProps {
@@ -32,7 +31,10 @@ type Patient = {
   lastName: string;
   gender: string;
   age: string;
+  birthdate: string;
+  patientCode: string;
   bed: string;
+  location?: string;
 };
 
 const SearchPatientPage: React.FC<SearchPatientPageProps> = ({ 
@@ -42,58 +44,63 @@ const SearchPatientPage: React.FC<SearchPatientPageProps> = ({
   // State for search filters
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
+  const [birthdate, setBirthdate] = useState<Date | null>(null);
+  const [sex, setSex] = useState<string>('');
+  const [patientCode, setPatientCode] = useState('');
+  const [location, setLocation] = useState<string>('');
   const [selectedPatient, setSelectedPatient] = useState<Patient | null>(null);
   
   // Mock patient data for the search results
   const mockPatients: Patient[] = [
-    { id: 1, firstName: 'John', lastName: 'Anderson', gender: 'Male', age: '62', bed: '101' },
-    { id: 2, firstName: 'Maria', lastName: 'Patel', gender: 'Female', age: '45', bed: '102' },
-    { id: 3, firstName: 'David', lastName: 'Rodriguez', gender: 'Male', age: '37', bed: '103' },
-    { id: 4, firstName: 'Sarah', lastName: 'Smith', gender: 'Female', age: '54', bed: '104' },
-    { id: 5, firstName: 'Robert', lastName: 'Johnson', gender: 'Male', age: '70', bed: '105' },
-    { id: 6, firstName: 'Li', lastName: 'Wu', gender: 'Female', age: '29', bed: '106' },
-    { id: 7, firstName: 'James', lastName: 'Brown', gender: 'Male', age: '42', bed: '107' },
-    { id: 8, firstName: 'Ana', lastName: 'Garcia', gender: 'Female', age: '51', bed: '108' },
-    { id: 9, firstName: 'Michael', lastName: 'Taylor', gender: 'Male', age: '63', bed: '109' },
-    { id: 10, firstName: 'Min', lastName: 'Kim', gender: 'Female', age: '36', bed: '110' },
-    { id: 11, firstName: 'Thomas', lastName: 'Williams', gender: 'Male', age: '58', bed: '111' },
-    { id: 12, firstName: 'Fiona', lastName: 'Murphy', gender: 'Female', age: '44', bed: '112' },
+    { id: 1, firstName: 'Test', lastName: 'Patient', gender: 'M', age: '35', birthdate: '', patientCode: '3342', bed: '101' },
+    { id: 2, firstName: 'Care', lastName: 'Patient 1', gender: 'M', age: '35', birthdate: '03/11/1990', patientCode: '20000001', bed: '102' },
+    { id: 3, firstName: 'Jim', lastName: 'Patient 2', gender: 'M', age: '32', birthdate: '07/05/1993', patientCode: '20000002', bed: '103' },
+    { id: 4, firstName: 'Joe', lastName: 'Patient 3', gender: 'M', age: '36', birthdate: '07/05/1989', patientCode: '20000003', bed: '104' },
+    { id: 5, firstName: 'Rose', lastName: 'Patient 4', gender: 'F', age: '33', birthdate: '03/05/1992', patientCode: '20000004', bed: '105' },
+    { id: 6, firstName: 'Ellen', lastName: 'Patient 5', gender: 'F', age: '38', birthdate: '03/09/1987', patientCode: '20000005', bed: '106' },
+    { id: 7, firstName: 'Bill', lastName: 'Patient 6', gender: 'M', age: '58', birthdate: '03/11/1967', patientCode: '20000006', bed: '107' },
+    { id: 8, firstName: 'Mark', lastName: 'Patient 7', gender: 'M', age: '58', birthdate: '03/12/1967', patientCode: '20000007', bed: '108' },
+    { id: 9, firstName: 'Aaron', lastName: 'Patient 8', gender: 'M', age: '65', birthdate: '01/12/1960', patientCode: '20000008', bed: '109' },
   ];
 
-  // Filter patients based on search criteria from text fields
+  // Filter patients based on search criteria
   const filteredPatients = mockPatients.filter(patient => {
     const matchesFirstName = firstName === '' || 
       patient.firstName.toLowerCase().includes(firstName.toLowerCase());
     const matchesLastName = lastName === '' || 
       patient.lastName.toLowerCase().includes(lastName.toLowerCase());
-    return matchesFirstName && matchesLastName;
+    
+    // Handle Date objects for birthdate filtering
+    const matchesBirthdate = !birthdate || 
+      (patient.birthdate && new Date(patient.birthdate).toDateString() === birthdate.toDateString());
+      
+    const matchesSex = sex === '' || 
+      patient.gender === sex;
+    const matchesPatientCode = patientCode === '' || 
+      patient.patientCode.includes(patientCode);
+    const matchesLocation = location === '' || 
+      (patient.location && patient.location.toLowerCase().includes(location.toLowerCase()));
+    
+    return matchesFirstName && matchesLastName && matchesBirthdate && 
+           matchesSex && matchesPatientCode && matchesLocation;
   });
 
-  // Functions for SearchBox component
-  const fetchPatientsByName = (search: string) => {
-    if (!search) return [];
-    return mockPatients.filter(patient => {
-      const fullName = `${patient.firstName} ${patient.lastName}`;
-      return fullName.toLowerCase().includes(search.toLowerCase());
-    });
-  };
-
-  const [searchText, setSearchText] = useState('');
-  const searchResults = fetchPatientsByName(searchText);
-
-  // Handle search selection
-  const handlePatientSelection = (patient: Patient) => {
+  // Handle patient selection from row click
+  const handlePatientRowClick = (patient: Patient) => {
     setSelectedPatient(patient);
-    // Also update the filter fields to match the selected patient
-    setFirstName(patient.firstName);
-    setLastName(patient.lastName);
+    // Navigate directly to patient details
+    onSelectPatient(patient.id, patient.lastName);
   };
 
-  // Handle the final selection to navigate to patient details
-  const handleSelectPatient = () => {
-    if (selectedPatient) {
-      onSelectPatient(selectedPatient.id, selectedPatient.lastName);
-    }
+  // Handle clear button click
+  const handleClearFilters = () => {
+    setFirstName('');
+    setLastName('');
+    setBirthdate(null);
+    setSex('');
+    setPatientCode('');
+    setLocation('');
+    setSelectedPatient(null);
   };
 
   // Current date and time for the header
@@ -123,216 +130,223 @@ const SearchPatientPage: React.FC<SearchPatientPageProps> = ({
           </Button>
           
           <FlexBox alignItems="center" gap={36} style={{ flexWrap: 'wrap' }}>
-            {/* Group 4 - ADM */}
             <FlexBox alignItems="center" gap={8}>
               <PersonPortraitCircle />
               <Label>ADM</Label>
             </FlexBox>
             
-            {/* Group 5 - ICU CENTRAL */}
             <FlexBox alignItems="center" gap={8}>
-              <Laptop />
+              <Laptop  />
               <Label>ICU CENTRAL</Label>
             </FlexBox>
             
-            {/* Group 6 - Time and Date */}
             <FlexBox alignItems="center" gap={8}>
-              <Clock />
+              <Clock  />
               <FlexBox flexDirection="column">
                 <Label>{formattedTime}</Label>
                 <Label>{formattedDate}</Label>
               </FlexBox>
             </FlexBox>
             
-            {/* Group 7 - Question mark */}
-            <QuestionmarkCircleOutline />
+            <QuestionmarkCircleOutline  />
           </FlexBox>
         </FlexBox>
       </div>
       <hr className={separatorHorizontal} style={{ margin: '0.5rem 0' }} />
 
-      {/* Search Form */}
+      {/* Enhanced Search Form */}
       <div style={{ padding: '1rem' }}>
         <FlexBox flexDirection="column" gap={16}>
           <H3>Patient Search</H3>
           
-          {/* SearchBox Integration */}
+          {/* Advanced Search Filters - Redesigned to match screenshot */}
           <FlexBox 
             style={{ 
               backgroundColor: 'var(--color-background-secondary)',
-              padding: '1rem',
+              padding: '1.5rem',
               borderRadius: '4px',
               border: '1px solid var(--color-neutral-20)'
             }} 
             flexDirection="column" 
             gap={16}
           >
-            <FlexBox alignItems="center" gap={8}>
-              <Search className={iconSmall} />
-              <Label style={{ fontWeight: 'bold' }}>Quick Search</Label>
-            </FlexBox>
-            
-            <FlexBox style={{ width: '100%' }}>
-              <SearchBox<Patient>
-                items={searchResults}
-                aria-label="Search patients"
-                placeholder="Search by patient name"
-                onInputChange={setSearchText}
-                onSelectionChange={(key) => {
-                  const patient = mockPatients.find(p => p.id === Number(key));
-                  if (patient) handlePatientSelection(patient);
-                }}
-                style={{ width: '100%' }}
-              >
-                {(patient) => (
-                  <Item key={patient.id}>
-                    {patient.firstName} {patient.lastName} ({patient.gender}, {patient.age}, Bed {patient.bed})
-                  </Item>
-                )}
-              </SearchBox>
-            </FlexBox>
-            
-            {selectedPatient && (
-              <FlexBox 
-                style={{ 
-                  backgroundColor: 'var(--color-background-primary)',
-                  padding: '0.75rem',
-                  borderRadius: '4px',
-                  border: '1px solid var(--color-neutral-20)'
-                }}
-                justifyContent="space-between"
-                alignItems="center"
-              >
-                <FlexBox flexDirection="column">
-                  <Label style={{ fontWeight: 'bold' }}>Selected Patient:</Label>
-                  <Text>{selectedPatient.firstName} {selectedPatient.lastName} ({selectedPatient.gender}, {selectedPatient.age})</Text>
-                  <Text>Bed: {selectedPatient.bed}</Text>
-                </FlexBox>
-                <Button 
-                  variant="primary" 
-                  onPress={handleSelectPatient}
-                >
-                  View Patient Details
-                </Button>
-              </FlexBox>
-            )}
-          </FlexBox>
-          
-          {/* Advanced Search Filters */}
-          <FlexBox 
-            style={{ 
-              backgroundColor: 'var(--color-background-secondary)',
-              padding: '1rem',
-              borderRadius: '4px',
-              border: '1px solid var(--color-neutral-20)'
-            }} 
-            flexDirection="column" 
-            gap={16}
-          >
-            <FlexBox alignItems="center" gap={8}>
-              <Filter className={iconSmall} />
-              <Label style={{ fontWeight: 'bold' }}>Advanced Filters</Label>
-            </FlexBox>
-            
-            <FlexBox gap={16} style={{ flexWrap: 'wrap' }}>
-              <FlexBox flexDirection="column" gap={4} style={{ minWidth: '200px' }}>
-                <Label htmlFor="firstName">First Name</Label>
-                <TextArea 
+            {/* First Row: First Name, Last Name */}
+            <FlexBox gap={16} style={{ width: '100%' }}>
+              <FlexBox flexDirection="column" style={{ width: '48%' }}>
+                <Label htmlFor="firstName" style={{ marginBottom: '4px' }}>First name</Label>
+                <TextBox 
                   id="firstName"
                   value={firstName}
-                  onChange={(value: string) => setFirstName(value)}
+                  onChange={setFirstName}
                   placeholder="Enter first name"
+                  style={{ width: '100%' }}
                 />
               </FlexBox>
               
-              <FlexBox flexDirection="column" gap={4} style={{ minWidth: '200px' }}>
-                <Label htmlFor="lastName">Last Name</Label>
-                <TextArea 
+              <FlexBox flexDirection="column" style={{ width: '48%' }}>
+                <Label htmlFor="lastName" style={{ marginBottom: '4px' }}>Last name</Label>
+                <TextBox 
                   id="lastName"
                   value={lastName}
-                  onChange={(value: string) => setLastName(value)}
+                  onChange={setLastName}
                   placeholder="Enter last name"
+                  style={{ width: '100%' }}
                 />
+              </FlexBox>
+            </FlexBox>
+            
+            {/* Second Row: Birth date, Sex, Patient code */}
+            <FlexBox gap={16} style={{ width: '100%' }}>
+              <FlexBox flexDirection="column" style={{ width: '31%' }}>
+                <Label htmlFor="birthdate" style={{ marginBottom: '4px' }}>Birth date</Label>
+                <DatePicker
+                  id="birthdate"
+                  value={birthdate}
+                  onChange={setBirthdate}
+                  aria-label="Select birth date"
+                  style={{ width: '100%' }}
+                />
+              </FlexBox>
+              
+              <FlexBox flexDirection="column" style={{ width: '15%' }}>
+                <Label htmlFor="sex" style={{ marginBottom: '4px' }}>Sex</Label>
+                <Dropdown 
+                  id="sex"
+                  selectedKey={sex}
+                  onSelectionChange={(key) => setSex(String(key))}
+                  aria-label="Select sex"
+                  style={{ width: '100%' }}
+                >
+                  <Item key="">All</Item>
+                  <Item key="M">M</Item>
+                  <Item key="F">F</Item>
+                </Dropdown>
+              </FlexBox>
+              
+              <FlexBox flexDirection="column" style={{ width: '48%' }}>
+                <Label htmlFor="patientCode" style={{ marginBottom: '4px' }}>Patient code</Label>
+                <TextBox 
+                  id="patientCode"
+                  value={patientCode}
+                  onChange={setPatientCode}
+                  placeholder="Enter patient code"
+                  style={{ width: '100%' }}
+                />
+              </FlexBox>
+            </FlexBox>
+            
+            {/* Third Row: Location */}
+            <FlexBox gap={16} style={{ width: '100%' }}>
+              <FlexBox flexDirection="column" style={{ width: '48%' }}>
+                <Label htmlFor="location" style={{ marginBottom: '4px' }}>Location</Label>
+                <Dropdown 
+                  id="location"
+                  selectedKey={location}
+                  onSelectionChange={(key) => setLocation(String(key))}
+                  aria-label="Select location"
+                  style={{ width: '100%' }}
+                >
+                  <Item key="">All Locations</Item>
+                  <Item key="ICU">ICU</Item>
+                  <Item key="ER">ER</Item>
+                  <Item key="Ward A">Ward A</Item>
+                  <Item key="Ward B">Ward B</Item>
+                </Dropdown>
+              </FlexBox>
+              
+              {/* Empty space for alignment */}
+              <div style={{ width: '20%' }}></div>
+              
+              {/* Action Buttons */}
+              <FlexBox justifyContent="flex-end" alignItems="flex-end" gap={8} style={{ width: '31%' }}>
+                <Button 
+                  variant="primary" 
+                  style={{ 
+                    width: '100%', 
+                    height: '36px',
+                    margin: 0,
+                  }}
+                  onPress={() => console.log('Search with filters')}
+                >
+                  SEARCH
+                </Button>
+                <Button 
+                  variant="quiet" 
+                  style={{ 
+                    width: '100%', 
+                    height: '36px',
+                    margin: 0,
+                  }}
+                  onPress={handleClearFilters}
+                >
+                  CLEAR
+                </Button>
               </FlexBox>
             </FlexBox>
           </FlexBox>
 
-          {/* Search Results */}
+          {/* Search Results Table - Updated to match screenshot */}
           <div 
             style={{ 
               backgroundColor: 'var(--color-background-secondary)',
-              padding: '1rem',
               borderRadius: '4px',
-              border: '1px solid var(--color-neutral-20)'
+              border: '1px solid var(--color-neutral-20)',
+              marginTop: '1rem'
             }}
           >
-            <FlexBox flexDirection="column" gap={8}>
-              <H3>Results ({filteredPatients.length})</H3>
-              
-              {filteredPatients.length > 0 ? (
-                <div style={{ marginTop: '0.5rem' }}>
-                  {/* Results Header */}
-                  <FlexBox 
-                    style={{ 
-                      borderBottom: '1px solid var(--color-neutral-20)',
-                      padding: '0.5rem 0',
-                      fontWeight: 'bold'
-                    }}
-                  >
-                    <div style={{ width: '15%' }}>ID</div>
-                    <div style={{ width: '25%' }}>Last Name</div>
-                    <div style={{ width: '25%' }}>First Name</div>
-                    <div style={{ width: '15%' }}>Gender</div>
-                    <div style={{ width: '10%' }}>Age</div>
-                    <div style={{ width: '10%' }}>Bed</div>
-                  </FlexBox>
-                  
-                  {/* Results Rows */}
-                  {filteredPatients.map(patient => (
-                    <FlexBox 
-                      key={patient.id}
-                      style={{ 
-                        padding: '0.5rem 0',
-                        borderBottom: '1px solid var(--color-neutral-10)',
-                        cursor: 'pointer',
-                        backgroundColor: selectedPatient?.id === patient.id ? 
-                          'var(--color-neutral-20)' : undefined
-                      }}
-                      className={styles.resultRow}
-                      onClick={() => handlePatientSelection(patient)}
-                    >
-                      <div style={{ width: '15%' }}>{patient.id}</div>
-                      <div style={{ width: '25%' }}>{patient.lastName}</div>
-                      <div style={{ width: '25%' }}>{patient.firstName}</div>
-                      <div style={{ width: '15%' }}>{patient.gender}</div>
-                      <div style={{ width: '10%' }}>{patient.age}</div>
-                      <div style={{ width: '10%' }}>{patient.bed}</div>
-                    </FlexBox>
-                  ))}
-                </div>
-              ) : (
-                <Text marginY="1rem">No patients found matching the search criteria.</Text>
-              )}
+            {/* Results Header */}
+            <FlexBox 
+              style={{ 
+                padding: '0.5rem',
+                fontWeight: 'bold',
+                borderBottom: '1px solid var(--color-neutral-20)'
+              }}
+            >
+              <div style={{ width: '23%', paddingLeft: '0.5rem' }}>Family Name</div>
+              <div style={{ width: '22%' }}>Given Name</div>
+              <div style={{ width: '10%' }}>Sex</div>
+              <div style={{ width: '20%' }}>Birthdate</div>
+              <div style={{ width: '25%' }}>Patient Code</div>
             </FlexBox>
+            
+            {/* Results Rows */}
+            <div style={{ maxHeight: '400px', overflowY: 'auto' }}>
+              {filteredPatients.map((patient) => (
+                <FlexBox 
+                  key={patient.id}
+                  style={{ 
+                    padding: '0.5rem',
+                    borderBottom: '1px solid var(--color-neutral-10)',
+                    cursor: 'pointer',
+                    backgroundColor: patient.id === selectedPatient?.id ? 
+                      'var(--color-neutral-20)' : 'white',
+                    transition: 'background-color 0.2s'
+                  }}
+                  onClick={() => handlePatientRowClick(patient)}
+                  onKeyDown={(e) => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                      handlePatientRowClick(patient);
+                    }
+                  }}
+                  tabIndex={0}
+                  role="button"
+                  aria-label={`Select patient ${patient.firstName} ${patient.lastName}`}
+                >
+                  <div style={{ width: '23%', paddingLeft: '0.5rem' }}>{patient.lastName}</div>
+                  <div style={{ width: '22%' }}>{patient.firstName}</div>
+                  <div style={{ width: '10%' }}>{patient.gender}</div>
+                  <div style={{ width: '20%' }}>{patient.birthdate}</div>
+                  <div style={{ width: '25%' }}>{patient.patientCode}</div>
+                </FlexBox>
+              ))}
+            </div>
+            
+            {filteredPatients.length === 0 && (
+              <Text style={{ padding: '1rem', textAlign: 'center' }}>
+                No patients found matching the search criteria.
+              </Text>
+            )}
           </div>
-          
-          {/* Action Buttons */}
-          {selectedPatient && (
-            <FlexBox justifyContent="flex-end" gap={8}>
-              <Button 
-                variant="quiet" 
-                onPress={onCancel}
-              >
-                Cancel
-              </Button>
-              <Button 
-                variant="primary" 
-                onPress={handleSelectPatient}
-              >
-                Select Patient
-              </Button>
-            </FlexBox>
-          )}
         </FlexBox>
       </div>
     </>
