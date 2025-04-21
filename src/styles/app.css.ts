@@ -297,3 +297,45 @@ globalStyle(".warning-value", {
   color: 'var(--color-warning)',
   fontWeight: TYPOGRAPHY.fontWeightBold,
 });
+
+// Add these new styles to src/styles/app.css.ts
+
+// Icon display fix
+export const iconDisplay = style({
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  width: '24px',
+  height: '24px',
+});
+
+// Patient Detail View Tab Structure
+export const patientDetailTabContainer = style({
+  display: 'flex',
+  flexDirection: 'column',
+  width: '100%',
+  marginBottom: SPACING.md,
+});
+
+export const tabContentWrapper = style({
+  display: 'flex',
+  flexDirection: 'column',
+  width: '100%',
+  marginTop: SPACING.md,
+});
+
+// Enhance alignment for filters
+export const filterRow = style({
+  display: 'flex',
+  alignItems: 'center',
+  gap: SPACING.md,
+  marginBottom: SPACING.sm,
+});
+
+export const filterLabel = style({
+  minWidth: '60px',
+});
+
+export const filterTabsContainer = style({
+  flex: 1,
+});
