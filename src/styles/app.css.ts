@@ -328,7 +328,7 @@ globalStyle(".warning-value", {
   fontWeight: TYPOGRAPHY.fontWeightBold,
 });
 
-// Add these new styles for responsive layout
+// styles for responsive layout
 export const iconDisplay = style({
   display: 'flex',
   alignItems: 'center',
@@ -353,7 +353,7 @@ export const tabContentWrapper = style({
   marginTop: SPACING.md,
 });
 
-// Enhance alignment for filters
+// alignment for filters
 export const filterRow = style({
   display: 'flex',
   alignItems: 'center',
@@ -378,14 +378,11 @@ export const filterTabsContainer = style({
   overflowX: 'auto',
 });
 
-// Add these styles to your src/styles/app.css.ts file
 
 // Search page styles
 export const searchContainer = style({
-  padding: SPACING.md,
   display: 'flex',
   flexDirection: 'column',
-  gap: SPACING.md,
 });
 
 export const searchForm = style({

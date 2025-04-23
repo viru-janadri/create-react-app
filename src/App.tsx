@@ -175,7 +175,6 @@ export default function App() {
             /* Render search patient page */
             <SearchPatientPage 
               onSelectPatient={handlePatientSelect}
-              onCancel={handleBackToGrid}
             />
           ) : currentView === AppView.PATIENT_DETAIL && selectedPatient ? (
             /* Render patient detail view */

@@ -34,7 +34,6 @@ import * as styles from "../styles";
 
 interface SearchPatientPageProps {
   onSelectPatient: (id: number, name: string) => void;
-  onCancel: () => void;
 }
 
 // Define Patient type
@@ -101,11 +100,13 @@ const SearchPatientPage: React.FC<SearchPatientPageProps> = ({
     return matchesFirstName && matchesLastName && matchesBirthdate && 
            matchesSex && matchesPatientCode });
 
-  // Handle patient selection from row click
+  // Handle patient selection
   const handlePatientRowClick = (patient: Patient) => {
     setSelectedPatient(patient);
-    // Navigate directly to patient details
-    onSelectPatient(patient.id, patient.lastName);
+    // Add a small delay to show selection before navigation
+    setTimeout(() => {
+      onSelectPatient(patient.id, patient.lastName);
+    }, 100);
   };
 
   // Handle clear button click
@@ -118,9 +119,6 @@ const SearchPatientPage: React.FC<SearchPatientPageProps> = ({
     setSelectedPatient(null);
   };
 
-
-  
-  
   // Get gender icon based on gender
   const getGenderIcon = (gender: string) => {
     return gender === 'M' ? 
@@ -142,14 +140,15 @@ const SearchPatientPage: React.FC<SearchPatientPageProps> = ({
         justifyContent: 'space-between'
       }}>
         <FlexBox alignItems="center" gap={16} style={{ width: '98%', justifyContent: 'space-between' }}>
-          <Button 
-            variant="quiet" 
-            onPress={onCancel}
-            style={{ display: 'flex', alignItems: 'center', gap: '8px' }}
-          >
-            <ArrowLeft className={iconSmall} />
-            Back to Dashboard
-          </Button>
+           
+            <Button 
+              variant="primary"
+              isDisabled={true}
+              style={{ display: 'flex', alignItems: 'center', gap: '8px', opacity: '0.6' }}
+            >
+              Choose Patient...
+            </Button>
+          
           
           <FlexBox alignItems="center" gap={36} style={{ flexWrap: 'wrap' }}>
             <FlexBox alignItems="center" gap={8}>
@@ -367,9 +366,11 @@ const SearchPatientPage: React.FC<SearchPatientPageProps> = ({
               backgroundColor: 'var(--color-background-primary)'
             }}>
               {filteredPatients.map((patient) => (
-                <FlexBox 
+                // Using a div instead of FlexBox for better click handling
+                <div 
                   key={patient.id}
                   style={{ 
+                    display: 'flex',
                     padding: '0.75rem 0.5rem',
                     borderBottom: '1px solid var(--color-neutral-20)',
                     cursor: 'pointer',
@@ -398,7 +399,7 @@ const SearchPatientPage: React.FC<SearchPatientPageProps> = ({
                   <div style={{ width: '15%' }}>{patient.patientCode}</div>
                   <div style={{ width: '12%' }}>
                   </div>
-                </FlexBox>
+                </div>
               ))}
               
               {filteredPatients.length === 0 && (
@@ -414,7 +415,7 @@ const SearchPatientPage: React.FC<SearchPatientPageProps> = ({
                   }}
                 >
                   <Text>No patients found matching the search criteria.</Text>
-                  <Text >Try adjusting your search filters</Text>
+                  <Text>Try adjusting your search filters</Text>
                 </FlexBox>
               )}
             </div>
