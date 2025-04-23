@@ -25,7 +25,6 @@ import {
   GenderMale,
   GenderFemale,
   DocumentSettings,
-  ArrowLeft,
   PersonPortrait
 } from "@filament-icons/dls4-react";
 import { separatorHorizontal, iconSmall } from "@filament-theme/atomics";
@@ -51,7 +50,6 @@ type Patient = {
 
 const SearchPatientPage: React.FC<SearchPatientPageProps> = ({ 
   onSelectPatient,
-  onCancel
 }) => {
   // State for search filters
   const [firstName, setFirstName] = useState('');
