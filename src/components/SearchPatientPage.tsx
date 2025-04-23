@@ -101,10 +101,8 @@ const SearchPatientPage: React.FC<SearchPatientPageProps> = ({
   // Handle patient selection
   const handlePatientRowClick = (patient: Patient) => {
     setSelectedPatient(patient);
-    // Add a small delay to show selection before navigation
-    setTimeout(() => {
-      onSelectPatient(patient.id, patient.lastName);
-    }, 100);
+    onSelectPatient(patient.id, patient.lastName);
+
   };
 
   // Handle clear button click

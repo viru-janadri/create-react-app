@@ -38,6 +38,8 @@ import PatientCard from "./components/PatientCard";
 import PatientDetailView from "./components/PatientDetailView";
 import SearchPatientPage from "./components/SearchPatientPage";
 
+
+
 function useMediaQuery(query: string) {
   const mediaQuery = useMemo(() => window.matchMedia(query), [query]);
   const [match, setMatch] = useState(mediaQuery.matches);
@@ -51,6 +53,8 @@ function useMediaQuery(query: string) {
 
   return match;
 }
+
+
 
 function useBreakpoints() {
   const minWidth900 = useMediaQuery("(min-width: 900px)");
@@ -99,6 +103,7 @@ export default function App() {
     setCurrentView(AppView.SEARCH_PATIENT);
   };
 
+  
   return (
     <div
       className={clsx(

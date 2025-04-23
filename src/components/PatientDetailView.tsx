@@ -19,12 +19,12 @@ import {
   ContrastLiquid32,
   Ecg,
   Clock,
-  AlarmBellClock,
+  Alarm as AlarmIcon,
   MoreHorizontal,
   Print,
   Laptop,
   QuestionmarkCircleOutline,
-  Cross
+  Cross16
 } from "@filament-icons/dls4-react";
 import { iconSmall, separatorHorizontal } from "@filament-theme/atomics";
 import * as styles from "../styles";
@@ -108,15 +108,8 @@ const PatientDetailView: React.FC<PatientDetailViewProps> = ({
   // Selected tab state
   const [selectedTab, setSelectedTab] = useState('alarms');
 
-
-  // Get device icon based on device type
-  const getDeviceIcon = (deviceType: string, addressed: boolean) => {
-    const iconStyle = { 
-      color: 'currentColor', 
-      display: 'block',
-      position: 'relative' as const
-    };
-
+  // Get device icon based on device type - returns the device icon without cross mark
+  const getDeviceIcon = (deviceType: string) => {
     // Select the appropriate icon based on device type
     let DeviceIcon;
     switch (deviceType) {
@@ -133,10 +126,21 @@ const PatientDetailView: React.FC<PatientDetailViewProps> = ({
         DeviceIcon = InformationCircleOutline;
     }
 
-    // If the alarm has been addressed, add an X overlay
     return (
       <div style={{ position: 'relative', width: '24px', height: '24px', display: 'inline-flex', alignItems: 'center', justifyContent: 'center' }}>
-        <DeviceIcon className={iconSmall} style={iconStyle} />
+        <DeviceIcon className={iconSmall} style={{ display: 'block', color: 'currentColor' }} />
+      </div>
+    );
+  };
+
+  // New function to get alarm bell icon with cross mark for addressed alarms
+  const getAlarmIcon = (alarmType: string, addressed: boolean) => {
+    // Get color based on alarm type
+    const color = getAlarmColor(alarmType);
+    
+    return (
+      <div style={{ position: 'relative', width: '24px', height: '24px', display: 'inline-flex', alignItems: 'center', justifyContent: 'center' }}>
+        <AlarmIcon className={iconSmall} style={{ display: 'block', color }} />
         {addressed && (
           <div style={{ 
             position: 'absolute', 
@@ -147,9 +151,8 @@ const PatientDetailView: React.FC<PatientDetailViewProps> = ({
             display: 'flex', 
             alignItems: 'center', 
             justifyContent: 'center',
-            color: '#000' 
           }}>
-            <Cross className={iconSmall} style={{ fontSize: '16px', color: deviceType === 'agw' ? '#F5BE00' : deviceType === 'carescape' ? (patientData.alarms.find(a => a.deviceType === deviceType)?.type === 'error' ? '#D8312C' : '#00A3E0') : '#000' }} />
+            <Cross16 className={iconSmall} />
           </div>
         )}
       </div>
@@ -378,13 +381,13 @@ const PatientDetailView: React.FC<PatientDetailViewProps> = ({
                         <InformationCircleOutline className={iconSmall} style={{ display: 'block', color: 'currentColor' }} />
                       </Item>
                       <Item key="warning">
-                        <AlarmBellClock className={iconSmall} style={{ color: '#00A3E0', display: 'block' }} />
+                        <AlarmIcon className={iconSmall} style={{ color: '#00A3E0', display: 'block' }} />
                       </Item>
                       <Item key="caution">
-                        <AlarmBellClock className={iconSmall} style={{ color: '#F5BE00', display: 'block' }} />
+                        <AlarmIcon className={iconSmall} style={{ color: '#F5BE00', display: 'block' }} />
                       </Item>
                       <Item key="error">
-                        <AlarmBellClock className={iconSmall} style={{ color: '#D8312C', display: 'block' }} />
+                        <AlarmIcon className={iconSmall} style={{ color: '#D8312C', display: 'block' }} />
                       </Item>
                     </Tabs>
                   </TabContext>
@@ -412,17 +415,21 @@ const PatientDetailView: React.FC<PatientDetailViewProps> = ({
 
               {/* Alarms Table */}
               <div className={styles.alarmTable}>
-                <div className={styles.tableHeader}>
+                <div className={styles.tableHeader} style={{ gridTemplateColumns: '80px 60px 60px 1fr' }}>
                   <div className={styles.timeColumn}>Time</div>
                   <div className={styles.deviceColumn}>Device</div>
+                  <div className={styles.deviceColumn}></div>
                   <div className={styles.descriptionColumn}>Description</div>
                 </div>
                 
                 {patientData.alarms.map((alarm, index) => (
-                  <div className={styles.tableRow} key={index}>
+                  <div className={styles.tableRow} key={index} style={{ gridTemplateColumns: '80px 60px 60px 1fr' }}>
                     <div className={styles.timeColumn}>{alarm.time}</div>
                     <div className={styles.deviceColumn} style={{ display: 'flex', justifyContent: 'center' }}>
-                      {getDeviceIcon(alarm.deviceType, alarm.addressed)}
+                      {getDeviceIcon(alarm.deviceType)}
+                    </div>
+                    <div className={styles.deviceColumn} style={{ display: 'flex', justifyContent: 'center' }}>
+                      {getAlarmIcon(alarm.type, alarm.addressed)}
                     </div>
                     <div 
                       className={styles.descriptionColumn}
