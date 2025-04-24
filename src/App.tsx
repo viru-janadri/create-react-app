@@ -9,7 +9,8 @@ import {
 } from "@filament-icons/dls4-react";
 import {
   backgroundPrimary,
-  separatorHorizontal
+  separatorHorizontal,
+  iconSmall
 } from "@filament-theme/atomics";
 import { base } from "@filament-theme/base";
 import {
@@ -23,6 +24,11 @@ import {
   NavigationBarTitle,
   Portal,
 } from "@filament/react";
+
+import { AiBoxLabel,
+  Alarm as AlarmIcon,
+ } from '@filament-icons/react';
+
 import clsx from "clsx";
 
 import { accentOrangeDark } from "@filament/theme/styles/accent/orange-dark";
@@ -38,8 +44,6 @@ import PatientCard from "./components/PatientCard";
 import PatientDetailView from "./components/PatientDetailView";
 import SearchPatientPage from "./components/SearchPatientPage";
 
-
-
 function useMediaQuery(query: string) {
   const mediaQuery = useMemo(() => window.matchMedia(query), [query]);
   const [match, setMatch] = useState(mediaQuery.matches);
@@ -53,8 +57,6 @@ function useMediaQuery(query: string) {
 
   return match;
 }
-
-
 
 function useBreakpoints() {
   const minWidth900 = useMediaQuery("(min-width: 900px)");
@@ -103,7 +105,11 @@ export default function App() {
     setCurrentView(AppView.SEARCH_PATIENT);
   };
 
-  
+  // Placeholder handler for bell icon click
+  const handleBellClick = () => {
+    console.log("Bell icon clicked, no action defined yet");
+  };
+
   return (
     <div
       className={clsx(
@@ -234,16 +240,55 @@ export default function App() {
               </div>
               <hr className={separatorHorizontal} style={{ margin: '0.5rem 0' }} />
 
-              {/* Patient Grid */}
-              <div className={styles.cardGrid}>
-                {PATIENT_NAMES.map((name, i) => (
-                  <PatientCard 
-                    key={i} 
-                    id={i + 1} 
-                    name={name}
-                    onHeaderClick={() => handlePatientSelect(i + 1, name)}
-                  />
-                ))}
+              <div style={{ display: 'flex' }}>
+                {/* Left sidebar column */}
+                <div style={{ 
+                  width: '80px', 
+                  borderRight: '1px solid var(--color-neutral-20)',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  alignItems: 'center',
+                  paddingTop: '1rem'
+                }}>
+                  {/* Bell icon */}
+                  <Button 
+                    variant="quiet" 
+                    aria-label="Notifications"
+                    onPress={handleBellClick}
+                    style={{ marginBottom: '1rem' }}
+                  >
+                    <AlarmIcon  style={{
+                      fontSize: '32px', 
+                      width: '32px', 
+                      height: '32px',
+                      }}/>
+                  </Button>
+
+                  <Button
+                    variant="quiet" 
+                    aria-label="AI button">
+                      <AiBoxLabel style={{
+                      fontSize: '32px', 
+                      width: '32px', 
+                      height: '32px',
+                      }}/>
+                    </Button>
+                    
+                  
+                  {/* Space for future items */}
+                </div>
+                
+                {/* Patient Grid */}
+                <div className={styles.cardGrid}>
+                  {PATIENT_NAMES.map((name, i) => (
+                    <PatientCard 
+                      key={i} 
+                      id={i + 1} 
+                      name={name}
+                      onHeaderClick={() => handlePatientSelect(i + 1, name)}
+                    />
+                  ))}
+                </div>
               </div>
             </>
           )}

@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@filament-icons/dls4-react": "^2.7.0",
+    "@filament-icons/react": "^1.14.0",
     "@filament-theme/atomics": "^2.2.6",
     "@filament-theme/base": "^2.1.10",
     "@filament/fonts": "^2.2.2",

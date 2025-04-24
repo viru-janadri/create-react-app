@@ -2363,6 +2363,21 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@filament-icons/react@npm:^1.14.0":
+  version: 1.14.0
+  resolution: "@filament-icons/react@npm:1.14.0::__archiveUrl=https%3A%2F%2Fartifactory-ehv.ta.philips.com%3A443%2Fartifactory%2Fapi%2Fnpm%2Fdl-common-npm%2F%40filament-icons%2Freact%2F-%2F%40filament-icons%2Freact-1.14.0.tgz"
+  dependencies:
+    "@filament/atomic-styles": "npm:1.6.1"
+    "@filament/utils-react": "npm:1.4.7"
+    "@react-types/shared": "npm:^3.28.0"
+    clsx: "npm:^2.1.1"
+  peerDependencies:
+    react: ^18.0.0 || ^19.0.0
+    react-dom: ^18.0.0 || ^19.0.0
+  checksum: 10c0/caf94d47fe3e7612799e016fa005b4d942b2f823566f91c7c4b267649471ecdb1b8aeeecfbef86f75ca5aca17b2c76bc1e6a8d2be150c305b8c23152124d14c4
+  languageName: node
+  linkType: hard
+
 "@filament-react/avatar@npm:^2.2.2":
   version: 2.2.2
   resolution: "@filament-react/avatar@npm:2.2.2::__archiveUrl=https%3A%2F%2Fartifactory-ehv.ta.philips.com%3A443%2Fartifactory%2Fapi%2Fnpm%2Fdl-common-npm%2F%40filament-react%2Favatar%2F-%2F%40filament-react%2Favatar-2.2.2.tgz"
@@ -4436,6 +4451,19 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@filament/atomic-styles@npm:1.6.1":
+  version: 1.6.1
+  resolution: "@filament/atomic-styles@npm:1.6.1::__archiveUrl=https%3A%2F%2Fartifactory-ehv.ta.philips.com%3A443%2Fartifactory%2Fapi%2Fnpm%2Fdl-common-npm%2F%40filament%2Fatomic-styles%2F-%2F%40filament%2Fatomic-styles-1.6.1.tgz"
+  dependencies:
+    "@filament/themes": "npm:1.1.1"
+    "@filament/util-styles": "npm:1.2.4"
+    "@vanilla-extract/css": "npm:^1.17.1"
+    "@vanilla-extract/css-utils": "npm:^0.1.4"
+    "@vanilla-extract/recipes": "npm:^0.5.5"
+  checksum: 10c0/8a7ae73cfc8cfa1294afa97f9e3b0ac385f29a0379113ec8f7f336944d02f350348f30a5cf097b8a67eaf4dc5a526b3d9109d4f68d3c2f6b7dfd69387c5df017
+  languageName: node
+  linkType: hard
+
 "@filament/fonts@npm:^2.2.2":
   version: 2.2.2
   resolution: "@filament/fonts@npm:2.2.2::__archiveUrl=https%3A%2F%2Fartifactory-ehv.ta.philips.com%3A443%2Fartifactory%2Fapi%2Fnpm%2Fdl-common-npm%2F%40filament%2Ffonts%2F-%2F%40filament%2Ffonts-2.2.2.tgz"
@@ -4564,6 +4592,40 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@filament/themes@npm:1.1.1":
+  version: 1.1.1
+  resolution: "@filament/themes@npm:1.1.1::__archiveUrl=https%3A%2F%2Fartifactory-ehv.ta.philips.com%3A443%2Fartifactory%2Fapi%2Fnpm%2Fdl-common-npm%2F%40filament%2Fthemes%2F-%2F%40filament%2Fthemes-1.1.1.tgz"
+  checksum: 10c0/8b787a8b9fffb780c30f2669f920cb5088918d39c656a0b23ff9741c40944e14eda26811050f03ba139e93578469cac465db2b5f692468064d99f2b60149163c
+  languageName: node
+  linkType: hard
+
+"@filament/util-styles@npm:1.2.4":
+  version: 1.2.4
+  resolution: "@filament/util-styles@npm:1.2.4::__archiveUrl=https%3A%2F%2Fartifactory-ehv.ta.philips.com%3A443%2Fartifactory%2Fapi%2Fnpm%2Fdl-common-npm%2F%40filament%2Futil-styles%2F-%2F%40filament%2Futil-styles-1.2.4.tgz"
+  dependencies:
+    "@vanilla-extract/css": "npm:^1.17.1"
+  checksum: 10c0/2140d8097c25474a1e0f213913f20cf5b03149d8a01da850247d5ab21b2b082cd92daaeb5c36928dbbe041e632ecfd15d76d7f3eb9934224aa30165fbfd7c1d5
+  languageName: node
+  linkType: hard
+
+"@filament/utils-react@npm:1.4.7":
+  version: 1.4.7
+  resolution: "@filament/utils-react@npm:1.4.7::__archiveUrl=https%3A%2F%2Fartifactory-ehv.ta.philips.com%3A443%2Fartifactory%2Fapi%2Fnpm%2Fdl-common-npm%2F%40filament%2Futils-react%2F-%2F%40filament%2Futils-react-1.4.7.tgz"
+  dependencies:
+    "@react-aria/i18n": "npm:^3.12.7"
+    "@react-aria/overlays": "npm:^3.26.1"
+    "@react-aria/utils": "npm:^3.28.1"
+    "@react-spectrum/utils": "npm:^3.12.3"
+    "@react-types/shared": "npm:^3.28.0"
+    clsx: "npm:^2.1.1"
+    polished: "npm:^4.3.1"
+  peerDependencies:
+    react: ^18.0.0 || ^19.0.0
+    react-dom: ^18.0.0 || ^19.0.0
+  checksum: 10c0/95d2f38cbb75a3f4952e2c56df5f1dcc462d87dfab3385e483cd1267153a7c43b37c273fedc868a95a46e5d941e32155d4c38e5528806802770910a3d9e18e53
+  languageName: node
+  linkType: hard
+
 "@formatjs/ecma402-abstract@npm:2.2.0":
   version: 2.2.0
   resolution: "@formatjs/ecma402-abstract@npm:2.2.0::__archiveUrl=https%3A%2F%2Fartifactory-ehv.ta.philips.com%3A443%2Fartifactory%2Fapi%2Fnpm%2Fdl-common-npm%2F%40formatjs%2Fecma402-abstract%2F-%2Fecma402-abstract-2.2.0.tgz"
@@ -4648,6 +4710,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@internationalized/date@npm:^3.8.0":
+  version: 3.8.0
+  resolution: "@internationalized/date@npm:3.8.0::__archiveUrl=https%3A%2F%2Fartifactory-ehv.ta.philips.com%3A443%2Fartifactory%2Fapi%2Fnpm%2Fdl-common-npm%2F%40internationalized%2Fdate%2F-%2Fdate-3.8.0.tgz"
+  dependencies:
+    "@swc/helpers": "npm:^0.5.0"
+  checksum: 10c0/7ac0cae2f1832fe2f2950e22208812ed8bf2845dd903ec93bd3aa024ca020124e137638b11bb5817b92abde1daa3f881cc81d62db0b20f5db2d9e07ab0cd9e01
+  languageName: node
+  linkType: hard
+
 "@internationalized/message@npm:^3.1.5":
   version: 3.1.5
   resolution: "@internationalized/message@npm:3.1.5::__archiveUrl=https%3A%2F%2Fartifactory-ehv.ta.philips.com%3A443%2Fartifactory%2Fapi%2Fnpm%2Fdl-common-npm%2F%40internationalized%2Fmessage%2F-%2Fmessage-3.1.5.tgz"
@@ -4655,6 +4726,16 @@ __metadata:
     "@swc/helpers": "npm:^0.5.0"
     intl-messageformat: "npm:^10.1.0"
   checksum: 10c0/81a2ef21154d0b00796fd2ecfb5365248fe50f64a7ad1616dbe4e491555e7e018557b061df145d0ab5b68cb1e757ac203d3892c42f791f169360b98d77fa5091
+  languageName: node
+  linkType: hard
+
+"@internationalized/message@npm:^3.1.7":
+  version: 3.1.7
+  resolution: "@internationalized/message@npm:3.1.7::__archiveUrl=https%3A%2F%2Fartifactory-ehv.ta.philips.com%3A443%2Fartifactory%2Fapi%2Fnpm%2Fdl-common-npm%2F%40internationalized%2Fmessage%2F-%2Fmessage-3.1.7.tgz"
+  dependencies:
+    "@swc/helpers": "npm:^0.5.0"
+    intl-messageformat: "npm:^10.1.0"
+  checksum: 10c0/0e3d46c97e790e34074f2589cbbe220bac8da453bf6d5d5da5d545b8a3989d37dc02d5209296f3cb900cea5a1220658821c7fe04fd00b2a27c446fcc6f062b1a
   languageName: node
   linkType: hard
 
@@ -4667,12 +4748,30 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@internationalized/number@npm:^3.6.1":
+  version: 3.6.1
+  resolution: "@internationalized/number@npm:3.6.1::__archiveUrl=https%3A%2F%2Fartifactory-ehv.ta.philips.com%3A443%2Fartifactory%2Fapi%2Fnpm%2Fdl-common-npm%2F%40internationalized%2Fnumber%2F-%2Fnumber-3.6.1.tgz"
+  dependencies:
+    "@swc/helpers": "npm:^0.5.0"
+  checksum: 10c0/2605245bec05c5ff2e100d0cf5541b1f08e9038d76c18f11ce9142f538a5a06f1f5459506e7ef6d1b162b4bcc34bf2d8eebb39fe235048cb41eebd00ec04fd65
+  languageName: node
+  linkType: hard
+
 "@internationalized/string@npm:^3.2.4":
   version: 3.2.4
   resolution: "@internationalized/string@npm:3.2.4::__archiveUrl=https%3A%2F%2Fartifactory-ehv.ta.philips.com%3A443%2Fartifactory%2Fapi%2Fnpm%2Fdl-common-npm%2F%40internationalized%2Fstring%2F-%2Fstring-3.2.4.tgz"
   dependencies:
     "@swc/helpers": "npm:^0.5.0"
   checksum: 10c0/5a03ff3d7bea1eb0e7ef8f7b00d148b6b8afa90600434db61389e6a8a83e3ca89e469c730eb02ef6284e7b559ce4be8f46cb446387e137931bc47acb8cbcd841
+  languageName: node
+  linkType: hard
+
+"@internationalized/string@npm:^3.2.6":
+  version: 3.2.6
+  resolution: "@internationalized/string@npm:3.2.6::__archiveUrl=https%3A%2F%2Fartifactory-ehv.ta.philips.com%3A443%2Fartifactory%2Fapi%2Fnpm%2Fdl-common-npm%2F%40internationalized%2Fstring%2F-%2Fstring-3.2.6.tgz"
+  dependencies:
+    "@swc/helpers": "npm:^0.5.0"
+  checksum: 10c0/8ed556697fee4aa2a115ea9d44075e8be8a7f80c76ebfcc6a4f14681175c4e59438f7ba049748d9c9cd0b46c7927b731d7c1f7fa53aaaf58b4c46dbd9f471b61
   languageName: node
   linkType: hard
 
@@ -5432,6 +5531,22 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@react-aria/focus@npm:^3.20.2":
+  version: 3.20.2
+  resolution: "@react-aria/focus@npm:3.20.2::__archiveUrl=https%3A%2F%2Fartifactory-ehv.ta.philips.com%3A443%2Fartifactory%2Fapi%2Fnpm%2Fdl-common-npm%2F%40react-aria%2Ffocus%2F-%2Ffocus-3.20.2.tgz"
+  dependencies:
+    "@react-aria/interactions": "npm:^3.25.0"
+    "@react-aria/utils": "npm:^3.28.2"
+    "@react-types/shared": "npm:^3.29.0"
+    "@swc/helpers": "npm:^0.5.0"
+    clsx: "npm:^2.0.0"
+  peerDependencies:
+    react: ^16.8.0 || ^17.0.0-rc.1 || ^18.0.0 || ^19.0.0-rc.1
+    react-dom: ^16.8.0 || ^17.0.0-rc.1 || ^18.0.0 || ^19.0.0-rc.1
+  checksum: 10c0/83c7ce227affed990833664b75c99601390ea9c879a44032541447268da22508712c512f5a943f702aef07bfe1e0ea51f554f49db132f17d80b2da9cb71ec687
+  languageName: node
+  linkType: hard
+
 "@react-aria/form@npm:^3.0.10":
   version: 3.0.10
   resolution: "@react-aria/form@npm:3.0.10::__archiveUrl=https%3A%2F%2Fartifactory-ehv.ta.philips.com%3A443%2Fartifactory%2Fapi%2Fnpm%2Fdl-common-npm%2F%40react-aria%2Fform%2F-%2Fform-3.0.10.tgz"
@@ -5511,6 +5626,25 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@react-aria/i18n@npm:^3.12.7, @react-aria/i18n@npm:^3.12.8":
+  version: 3.12.8
+  resolution: "@react-aria/i18n@npm:3.12.8::__archiveUrl=https%3A%2F%2Fartifactory-ehv.ta.philips.com%3A443%2Fartifactory%2Fapi%2Fnpm%2Fdl-common-npm%2F%40react-aria%2Fi18n%2F-%2Fi18n-3.12.8.tgz"
+  dependencies:
+    "@internationalized/date": "npm:^3.8.0"
+    "@internationalized/message": "npm:^3.1.7"
+    "@internationalized/number": "npm:^3.6.1"
+    "@internationalized/string": "npm:^3.2.6"
+    "@react-aria/ssr": "npm:^3.9.8"
+    "@react-aria/utils": "npm:^3.28.2"
+    "@react-types/shared": "npm:^3.29.0"
+    "@swc/helpers": "npm:^0.5.0"
+  peerDependencies:
+    react: ^16.8.0 || ^17.0.0-rc.1 || ^18.0.0 || ^19.0.0-rc.1
+    react-dom: ^16.8.0 || ^17.0.0-rc.1 || ^18.0.0 || ^19.0.0-rc.1
+  checksum: 10c0/fc6ccd3a44b084a9ad4001f8adfd086598ed4be229b51c3702b3d289003a67cf0ffd1d93174c16e51bb1745930571ba277d3132a25e6f8d4cc610ef273da7bdb
+  languageName: node
+  linkType: hard
+
 "@react-aria/interactions@npm:^3.22.4":
   version: 3.22.4
   resolution: "@react-aria/interactions@npm:3.22.4::__archiveUrl=https%3A%2F%2Fartifactory-ehv.ta.philips.com%3A443%2Fartifactory%2Fapi%2Fnpm%2Fdl-common-npm%2F%40react-aria%2Finteractions%2F-%2Finteractions-3.22.4.tgz"
@@ -5522,6 +5656,22 @@ __metadata:
   peerDependencies:
     react: ^16.8.0 || ^17.0.0-rc.1 || ^18.0.0 || ^19.0.0
   checksum: 10c0/8455a68540a4085b71ed034cad5c349a7e756e44cd30d69d340d7f7a66ce1886882021fbcc8049a5d8aeba54b47cd2ca49a7bc4e6910aab2d13b41703d55c7a5
+  languageName: node
+  linkType: hard
+
+"@react-aria/interactions@npm:^3.25.0":
+  version: 3.25.0
+  resolution: "@react-aria/interactions@npm:3.25.0::__archiveUrl=https%3A%2F%2Fartifactory-ehv.ta.philips.com%3A443%2Fartifactory%2Fapi%2Fnpm%2Fdl-common-npm%2F%40react-aria%2Finteractions%2F-%2Finteractions-3.25.0.tgz"
+  dependencies:
+    "@react-aria/ssr": "npm:^3.9.8"
+    "@react-aria/utils": "npm:^3.28.2"
+    "@react-stately/flags": "npm:^3.1.1"
+    "@react-types/shared": "npm:^3.29.0"
+    "@swc/helpers": "npm:^0.5.0"
+  peerDependencies:
+    react: ^16.8.0 || ^17.0.0-rc.1 || ^18.0.0 || ^19.0.0-rc.1
+    react-dom: ^16.8.0 || ^17.0.0-rc.1 || ^18.0.0 || ^19.0.0-rc.1
+  checksum: 10c0/091c7b7b2f94b2fefed440b97a986eff0320d5ba5e1a43c195a912e035aa8ce4d4be15f1852b2dffdbcc6a70190a74f0809e4d4cf3d7646b70c9f9b0fca829f5
   languageName: node
   linkType: hard
 
@@ -5665,6 +5815,28 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@react-aria/overlays@npm:^3.26.1":
+  version: 3.27.0
+  resolution: "@react-aria/overlays@npm:3.27.0::__archiveUrl=https%3A%2F%2Fartifactory-ehv.ta.philips.com%3A443%2Fartifactory%2Fapi%2Fnpm%2Fdl-common-npm%2F%40react-aria%2Foverlays%2F-%2Foverlays-3.27.0.tgz"
+  dependencies:
+    "@react-aria/focus": "npm:^3.20.2"
+    "@react-aria/i18n": "npm:^3.12.8"
+    "@react-aria/interactions": "npm:^3.25.0"
+    "@react-aria/ssr": "npm:^3.9.8"
+    "@react-aria/utils": "npm:^3.28.2"
+    "@react-aria/visually-hidden": "npm:^3.8.22"
+    "@react-stately/overlays": "npm:^3.6.15"
+    "@react-types/button": "npm:^3.12.0"
+    "@react-types/overlays": "npm:^3.8.14"
+    "@react-types/shared": "npm:^3.29.0"
+    "@swc/helpers": "npm:^0.5.0"
+  peerDependencies:
+    react: ^16.8.0 || ^17.0.0-rc.1 || ^18.0.0 || ^19.0.0-rc.1
+    react-dom: ^16.8.0 || ^17.0.0-rc.1 || ^18.0.0 || ^19.0.0-rc.1
+  checksum: 10c0/2835dba32a055160341b0c04c8922c4cfb905d2c630508f9b6fc94844131e5359fd27e72f44b7d313339519285465cc6b08c720f2deb8511185d1bdd6c7b10f3
+  languageName: node
+  linkType: hard
+
 "@react-aria/progress@npm:^3.4.17":
   version: 3.4.17
   resolution: "@react-aria/progress@npm:3.4.17::__archiveUrl=https%3A%2F%2Fartifactory-ehv.ta.philips.com%3A443%2Fartifactory%2Fapi%2Fnpm%2Fdl-common-npm%2F%40react-aria%2Fprogress%2F-%2Fprogress-3.4.17.tgz"
@@ -5788,6 +5960,17 @@ __metadata:
   peerDependencies:
     react: ^16.8.0 || ^17.0.0-rc.1 || ^18.0.0 || ^19.0.0
   checksum: 10c0/be52f2909035e093d3f72cccde15b66b4eef2dc30c71dac46a1ea43d3847dace1a709114640bfa3e9aa72ba716749635fb72116f4da16f7d80248ca348146456
+  languageName: node
+  linkType: hard
+
+"@react-aria/ssr@npm:^3.9.8":
+  version: 3.9.8
+  resolution: "@react-aria/ssr@npm:3.9.8::__archiveUrl=https%3A%2F%2Fartifactory-ehv.ta.philips.com%3A443%2Fartifactory%2Fapi%2Fnpm%2Fdl-common-npm%2F%40react-aria%2Fssr%2F-%2Fssr-3.9.8.tgz"
+  dependencies:
+    "@swc/helpers": "npm:^0.5.0"
+  peerDependencies:
+    react: ^16.8.0 || ^17.0.0-rc.1 || ^18.0.0 || ^19.0.0-rc.1
+  checksum: 10c0/848cac34f8584477ab6c91686ab447c7f7eee997e0b1771cc71298d15a4dd0400ce7b899ad8c1603a72d59a72f24a390964133693a3ba602828801d4dacc3f45
   languageName: node
   linkType: hard
 
@@ -5958,6 +6141,23 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@react-aria/utils@npm:^3.28.1, @react-aria/utils@npm:^3.28.2":
+  version: 3.28.2
+  resolution: "@react-aria/utils@npm:3.28.2::__archiveUrl=https%3A%2F%2Fartifactory-ehv.ta.philips.com%3A443%2Fartifactory%2Fapi%2Fnpm%2Fdl-common-npm%2F%40react-aria%2Futils%2F-%2Futils-3.28.2.tgz"
+  dependencies:
+    "@react-aria/ssr": "npm:^3.9.8"
+    "@react-stately/flags": "npm:^3.1.1"
+    "@react-stately/utils": "npm:^3.10.6"
+    "@react-types/shared": "npm:^3.29.0"
+    "@swc/helpers": "npm:^0.5.0"
+    clsx: "npm:^2.0.0"
+  peerDependencies:
+    react: ^16.8.0 || ^17.0.0-rc.1 || ^18.0.0 || ^19.0.0-rc.1
+    react-dom: ^16.8.0 || ^17.0.0-rc.1 || ^18.0.0 || ^19.0.0-rc.1
+  checksum: 10c0/69fc00d5dbd0fae9349a06cc3bcf327aa1edcb9049a491d0949b4de30c1b7669edc7150cc6885aa362af74a21b68c400b2965c3e117871264c47c379f4a98695
+  languageName: node
+  linkType: hard
+
 "@react-aria/visually-hidden@npm:^3.8.17":
   version: 3.8.17
   resolution: "@react-aria/visually-hidden@npm:3.8.17::__archiveUrl=https%3A%2F%2Fartifactory-ehv.ta.philips.com%3A443%2Fartifactory%2Fapi%2Fnpm%2Fdl-common-npm%2F%40react-aria%2Fvisually-hidden%2F-%2Fvisually-hidden-3.8.17.tgz"
@@ -5969,6 +6169,21 @@ __metadata:
   peerDependencies:
     react: ^16.8.0 || ^17.0.0-rc.1 || ^18.0.0 || ^19.0.0
   checksum: 10c0/411699c167686509583debc659e734ec3c123198570104abbd4fe74a5a60d93a305d73f6d761ec67846c672d1076d8f089a6f90d2e2653e1a334fe7344088bd5
+  languageName: node
+  linkType: hard
+
+"@react-aria/visually-hidden@npm:^3.8.22":
+  version: 3.8.22
+  resolution: "@react-aria/visually-hidden@npm:3.8.22::__archiveUrl=https%3A%2F%2Fartifactory-ehv.ta.philips.com%3A443%2Fartifactory%2Fapi%2Fnpm%2Fdl-common-npm%2F%40react-aria%2Fvisually-hidden%2F-%2Fvisually-hidden-3.8.22.tgz"
+  dependencies:
+    "@react-aria/interactions": "npm:^3.25.0"
+    "@react-aria/utils": "npm:^3.28.2"
+    "@react-types/shared": "npm:^3.29.0"
+    "@swc/helpers": "npm:^0.5.0"
+  peerDependencies:
+    react: ^16.8.0 || ^17.0.0-rc.1 || ^18.0.0 || ^19.0.0-rc.1
+    react-dom: ^16.8.0 || ^17.0.0-rc.1 || ^18.0.0 || ^19.0.0-rc.1
+  checksum: 10c0/fbf527b526250865731737d3d421d796ab0a2a2bb0dbd2532a506693fe8902fa2a53b0afbb7ee4d295028621bdcbe8e50583d3d6d0f87d5ae014eb97953e0a2a
   languageName: node
   linkType: hard
 
@@ -5985,6 +6200,23 @@ __metadata:
   peerDependencies:
     react: ^16.8.0 || ^17.0.0-rc.1 || ^18.0.0 || ^19.0.0
   checksum: 10c0/36ed3bd5311078a1adf71ac47656541ab38415731c938fabb5dcceee80fb7f51f91777c7afb5a30fa4d2cd2c51f2e26da4408759562ef0067133393452ef7faf
+  languageName: node
+  linkType: hard
+
+"@react-spectrum/utils@npm:^3.12.3":
+  version: 3.12.4
+  resolution: "@react-spectrum/utils@npm:3.12.4::__archiveUrl=https%3A%2F%2Fartifactory-ehv.ta.philips.com%3A443%2Fartifactory%2Fapi%2Fnpm%2Fdl-common-npm%2F%40react-spectrum%2Futils%2F-%2Futils-3.12.4.tgz"
+  dependencies:
+    "@react-aria/i18n": "npm:^3.12.8"
+    "@react-aria/ssr": "npm:^3.9.8"
+    "@react-aria/utils": "npm:^3.28.2"
+    "@react-types/shared": "npm:^3.29.0"
+    "@swc/helpers": "npm:^0.5.0"
+    clsx: "npm:^2.0.0"
+  peerDependencies:
+    react: ^16.8.0 || ^17.0.0-rc.1 || ^18.0.0 || ^19.0.0-rc.1
+    react-dom: ^16.8.0 || ^17.0.0-rc.1 || ^18.0.0 || ^19.0.0-rc.1
+  checksum: 10c0/684d13e3118e7f7b8ea69e52ad8060ff87c28e70da428f33de9a4fa5975809656905d91cb782906a4cc2dc3149ebab7faefe5cc5daeafe8097eaa5c4227677eb
   languageName: node
   linkType: hard
 
@@ -6109,6 +6341,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@react-stately/flags@npm:^3.1.1":
+  version: 3.1.1
+  resolution: "@react-stately/flags@npm:3.1.1::__archiveUrl=https%3A%2F%2Fartifactory-ehv.ta.philips.com%3A443%2Fartifactory%2Fapi%2Fnpm%2Fdl-common-npm%2F%40react-stately%2Fflags%2F-%2Fflags-3.1.1.tgz"
+  dependencies:
+    "@swc/helpers": "npm:^0.5.0"
+  checksum: 10c0/3f64deb7b5daa787072f77e358624b65ad0627ee148d968423f3a5968b655d99671673927e21e4ba2ad0c9828d6ea75dae8ca421af90f9b41986a28341a4101f
+  languageName: node
+  linkType: hard
+
 "@react-stately/form@npm:^3.0.6":
   version: 3.0.6
   resolution: "@react-stately/form@npm:3.0.6::__archiveUrl=https%3A%2F%2Fartifactory-ehv.ta.philips.com%3A443%2Fartifactory%2Fapi%2Fnpm%2Fdl-common-npm%2F%40react-stately%2Fform%2F-%2Fform-3.0.6.tgz"
@@ -6190,6 +6431,19 @@ __metadata:
   peerDependencies:
     react: ^16.8.0 || ^17.0.0-rc.1 || ^18.0.0 || ^19.0.0
   checksum: 10c0/559efc68bdb4512b8049f31a83e15404f7a306e960763570d876a08aee165656fdfbef4533251709e0576b1a7d6fd1f4e575ebfabc93738deb686c52571d36f9
+  languageName: node
+  linkType: hard
+
+"@react-stately/overlays@npm:^3.6.15":
+  version: 3.6.15
+  resolution: "@react-stately/overlays@npm:3.6.15::__archiveUrl=https%3A%2F%2Fartifactory-ehv.ta.philips.com%3A443%2Fartifactory%2Fapi%2Fnpm%2Fdl-common-npm%2F%40react-stately%2Foverlays%2F-%2Foverlays-3.6.15.tgz"
+  dependencies:
+    "@react-stately/utils": "npm:^3.10.6"
+    "@react-types/overlays": "npm:^3.8.14"
+    "@swc/helpers": "npm:^0.5.0"
+  peerDependencies:
+    react: ^16.8.0 || ^17.0.0-rc.1 || ^18.0.0 || ^19.0.0-rc.1
+  checksum: 10c0/4e75602378869027bb752500c771a732e5c9d7963f8101eb03941b350e6b6a74c0da20ab75de9daa28e3fa10f7230952636957caf16953c8b70fa8eb836a4657
   languageName: node
   linkType: hard
 
@@ -6349,6 +6603,17 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@react-stately/utils@npm:^3.10.6":
+  version: 3.10.6
+  resolution: "@react-stately/utils@npm:3.10.6::__archiveUrl=https%3A%2F%2Fartifactory-ehv.ta.philips.com%3A443%2Fartifactory%2Fapi%2Fnpm%2Fdl-common-npm%2F%40react-stately%2Futils%2F-%2Futils-3.10.6.tgz"
+  dependencies:
+    "@swc/helpers": "npm:^0.5.0"
+  peerDependencies:
+    react: ^16.8.0 || ^17.0.0-rc.1 || ^18.0.0 || ^19.0.0-rc.1
+  checksum: 10c0/09403746285a3866765c04bed5f2505e0bdbb971bdeb2eedee31ebf5bad3d0c0c0cef9d0dd5852fc6c58f6b552cbc90364eb32403245dfc04dc22c5e2fbfbe32
+  languageName: node
+  linkType: hard
+
 "@react-types/accordion@npm:3.0.0-alpha.24":
   version: 3.0.0-alpha.24
   resolution: "@react-types/accordion@npm:3.0.0-alpha.24::__archiveUrl=https%3A%2F%2Fartifactory-ehv.ta.philips.com%3A443%2Fartifactory%2Fapi%2Fnpm%2Fdl-common-npm%2F%40react-types%2Faccordion%2F-%2Faccordion-3.0.0-alpha.24.tgz"
@@ -6391,6 +6656,17 @@ __metadata:
   peerDependencies:
     react: ^16.8.0 || ^17.0.0-rc.1 || ^18.0.0 || ^19.0.0
   checksum: 10c0/89395334f286f1a97a584715bbb87e7bb017d7366aa73ce0cec36ec8cb59059dec1f5afe3ab44f3972e0c50f44daeb2d531b10191d6f2b7f70c3ce7d3c94c0da
+  languageName: node
+  linkType: hard
+
+"@react-types/button@npm:^3.12.0":
+  version: 3.12.0
+  resolution: "@react-types/button@npm:3.12.0::__archiveUrl=https%3A%2F%2Fartifactory-ehv.ta.philips.com%3A443%2Fartifactory%2Fapi%2Fnpm%2Fdl-common-npm%2F%40react-types%2Fbutton%2F-%2Fbutton-3.12.0.tgz"
+  dependencies:
+    "@react-types/shared": "npm:^3.29.0"
+  peerDependencies:
+    react: ^16.8.0 || ^17.0.0-rc.1 || ^18.0.0 || ^19.0.0-rc.1
+  checksum: 10c0/6412c06f1a590581283d8cfe7661bbc9f1916b827ecb332fc7d65c918f9e52496fd11ce7859742532ab0d75b8746098e9fe04561efc700969d41e59179f15c30
   languageName: node
   linkType: hard
 
@@ -6533,6 +6809,17 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@react-types/overlays@npm:^3.8.14":
+  version: 3.8.14
+  resolution: "@react-types/overlays@npm:3.8.14::__archiveUrl=https%3A%2F%2Fartifactory-ehv.ta.philips.com%3A443%2Fartifactory%2Fapi%2Fnpm%2Fdl-common-npm%2F%40react-types%2Foverlays%2F-%2Foverlays-3.8.14.tgz"
+  dependencies:
+    "@react-types/shared": "npm:^3.29.0"
+  peerDependencies:
+    react: ^16.8.0 || ^17.0.0-rc.1 || ^18.0.0 || ^19.0.0-rc.1
+  checksum: 10c0/a30a90997d40139a99d85b5a2f5e07ead48163e909f25e0ca1ff4664ebf8bd3bb59cebd3124b0eeba2e45226d36a54265eae5946dc587ec168acae47ed8f8090
+  languageName: node
+  linkType: hard
+
 "@react-types/progress@npm:^3.5.7":
   version: 3.5.7
   resolution: "@react-types/progress@npm:3.5.7::__archiveUrl=https%3A%2F%2Fartifactory-ehv.ta.philips.com%3A443%2Fartifactory%2Fapi%2Fnpm%2Fdl-common-npm%2F%40react-types%2Fprogress%2F-%2Fprogress-3.5.7.tgz"
@@ -6572,6 +6859,15 @@ __metadata:
   peerDependencies:
     react: ^16.8.0 || ^17.0.0-rc.1 || ^18.0.0 || ^19.0.0
   checksum: 10c0/d168f6b404c345928ef8ead94f0cecd3831d8f6df708dbe897ac62d566949a0931c3b0d95ef6dd02bc5af05b183781b531e6f041ffd1d320bc2cab7697fd27d0
+  languageName: node
+  linkType: hard
+
+"@react-types/shared@npm:^3.28.0, @react-types/shared@npm:^3.29.0":
+  version: 3.29.0
+  resolution: "@react-types/shared@npm:3.29.0::__archiveUrl=https%3A%2F%2Fartifactory-ehv.ta.philips.com%3A443%2Fartifactory%2Fapi%2Fnpm%2Fdl-common-npm%2F%40react-types%2Fshared%2F-%2Fshared-3.29.0.tgz"
+  peerDependencies:
+    react: ^16.8.0 || ^17.0.0-rc.1 || ^18.0.0 || ^19.0.0-rc.1
+  checksum: 10c0/a629e4fe9ce9062de603a1e01ae90a999b07f1367143f3b66921c8a0c8e59d90a528263be74d930162ed4a78a725a253c48b6f3b00a85767549e86cac4cc8218
   languageName: node
   linkType: hard
 
@@ -8748,6 +9044,26 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@vanilla-extract/css@npm:^1.17.1":
+  version: 1.17.1
+  resolution: "@vanilla-extract/css@npm:1.17.1::__archiveUrl=https%3A%2F%2Fartifactory-ehv.ta.philips.com%3A443%2Fartifactory%2Fapi%2Fnpm%2Fdl-common-npm%2F%40vanilla-extract%2Fcss%2F-%2Fcss-1.17.1.tgz"
+  dependencies:
+    "@emotion/hash": "npm:^0.9.0"
+    "@vanilla-extract/private": "npm:^1.0.6"
+    css-what: "npm:^6.1.0"
+    cssesc: "npm:^3.0.0"
+    csstype: "npm:^3.0.7"
+    dedent: "npm:^1.5.3"
+    deep-object-diff: "npm:^1.1.9"
+    deepmerge: "npm:^4.2.2"
+    lru-cache: "npm:^10.4.3"
+    media-query-parser: "npm:^2.0.2"
+    modern-ahocorasick: "npm:^1.0.0"
+    picocolors: "npm:^1.0.0"
+  checksum: 10c0/96b646ea2fc2e1ac7809305d51995f38abaa6a3e6c55b4d228d498f01e33f4a23254e3e4620094c335234bfe178c79a0bfcbdf0dd1faab41aaae237a8e439925
+  languageName: node
+  linkType: hard
+
 "@vanilla-extract/dynamic@npm:^2.1.2":
   version: 2.1.2
   resolution: "@vanilla-extract/dynamic@npm:2.1.2::__archiveUrl=https%3A%2F%2Fartifactory-ehv.ta.philips.com%3A443%2Fartifactory%2Fapi%2Fnpm%2Fdl-common-npm%2F%40vanilla-extract%2Fdynamic%2F-%2Fdynamic-2.1.2.tgz"
@@ -8791,6 +9107,15 @@ __metadata:
   version: 1.0.6
   resolution: "@vanilla-extract/private@npm:1.0.6::__archiveUrl=https%3A%2F%2Fartifactory-ehv.ta.philips.com%3A443%2Fartifactory%2Fapi%2Fnpm%2Fdl-common-npm%2F%40vanilla-extract%2Fprivate%2F-%2Fprivate-1.0.6.tgz"
   checksum: 10c0/f1c4d9f32f509f664b2d073ea114ff0a83f154bd3cdae429cade64ad1ca0fdc1ba745f2811496cc6a6f8e5513a9a0fa3798ffc41e6ff8868aa7f06c825f615ef
+  languageName: node
+  linkType: hard
+
+"@vanilla-extract/recipes@npm:^0.5.5":
+  version: 0.5.5
+  resolution: "@vanilla-extract/recipes@npm:0.5.5::__archiveUrl=https%3A%2F%2Fartifactory-ehv.ta.philips.com%3A443%2Fartifactory%2Fapi%2Fnpm%2Fdl-common-npm%2F%40vanilla-extract%2Frecipes%2F-%2Frecipes-0.5.5.tgz"
+  peerDependencies:
+    "@vanilla-extract/css": ^1.0.0
+  checksum: 10c0/5e032bc3f7873b1deb39fc64e2ab6871ac3d70dd527309b4e08310def142180fd346df48ca33306ac0ea7626673856e3995fab03f56f54a967c48a3e5e4545d3
   languageName: node
   linkType: hard
 
@@ -12757,6 +13082,7 @@ __metadata:
   dependencies:
     "@craco/craco": "npm:^7.1.0"
     "@filament-icons/dls4-react": "npm:^2.7.0"
+    "@filament-icons/react": "npm:^1.14.0"
     "@filament-theme/atomics": "npm:^2.2.6"
     "@filament-theme/base": "npm:^2.1.10"
     "@filament/fonts": "npm:^2.2.2"
