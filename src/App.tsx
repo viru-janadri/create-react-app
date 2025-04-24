@@ -41,6 +41,7 @@ import * as styles from "./styles";
 import PatientCard from "./components/PatientCard";
 import PatientDetailView from "./components/PatientDetailView";
 import SearchPatientPage from "./components/SearchPatientPage";
+import { AIInsightsPanel } from "./components/AIInsightsPanel";
 
 function useMediaQuery(query: string) {
   const mediaQuery = useMemo(() => window.matchMedia(query), [query]);
@@ -78,10 +79,15 @@ const PATIENT_NAMES = [
   "Taylor", "Kim", "Williams", "Murphy"
 ];
 
+
+
 export default function App() {
   const [darkMode, setDarkMode] = useState(false);
   const { minWidth900 } = useBreakpoints();
   
+  //State for show/hide AI panel
+  const [showAIPanel, setShowAIPanel] = useState(false);
+
   // State to track current view and selected patient
   const [currentView, setCurrentView] = useState<AppView>(AppView.DASHBOARD);
   const [selectedPatient, setSelectedPatient] = useState<{id: number, name: string} | null>(null);
@@ -268,6 +274,7 @@ export default function App() {
                     variant="quiet" 
                     aria-label="AI button"
                     style={{ marginBottom: '1rem' }}
+                    onPress={() => setShowAIPanel(!showAIPanel)}
                   >
                     <AiBoxLabel style={{
                       fontSize: '32px', 
@@ -276,6 +283,10 @@ export default function App() {
                     }}/>
                   </Button>
                   
+                   {/* Add the AI panel conditionally */}
+                {showAIPanel && (
+                  <AIInsightsPanel onClose={() => setShowAIPanel(false)} />
+                )}
                   {/* Space for future items */}
                 </div>
                 

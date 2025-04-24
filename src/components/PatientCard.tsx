@@ -20,6 +20,9 @@ import { iconSmall, separatorHorizontal } from "@filament-theme/atomics";
 import * as styles from "../styles";
 import AlarmProgressBar, { AlarmType } from './AlarmProgressBar';
 
+import { PredictiveAlarmService } from '../services/PredictiveAlarmService';
+
+
 // Define devices
 const DEVICES = [
   { name: 'AGW', icon: ContrastLiquid32, channels: ['P1', 'P2', 'P3', 'P4'] },
@@ -80,6 +83,9 @@ interface PatientCardProps {
 const PatientCard: React.FC<PatientCardProps> = ({ id, name, onHeaderClick }) => {
   const [alarms, setAlarms] = useState<Alarm[]>([]);
   const [showAlarms, setShowAlarms] = useState(false);
+
+  const predictions = PredictiveAlarmService.getPatientPredictions(id);
+  const hasPrediction = predictions.length > 0;
 
   // Function to generate a random alarm
   const generateRandomAlarm = (): Alarm => {
@@ -236,14 +242,25 @@ const PatientCard: React.FC<PatientCardProps> = ({ id, name, onHeaderClick }) =>
         onClick={onHeaderClick} 
         style={{ cursor: onHeaderClick ? 'pointer' : 'default' }}
       >
-        <CardHeader 
-          className={styles.patientCardHeader}
-        >
+        <CardHeader className={styles.patientCardHeader}>
           <FlexBox justifyContent="space-between" alignItems="center">
             <H3 noGutter>Patient {id}, {name}</H3>
-            <Button variant="primary" isIconOnly aria-label="Status">
-              {getHeaderIcon()}
-            </Button>
+            <FlexBox gap={8}>
+              {hasPrediction && (
+                <div style={{ 
+                  width: '10px', 
+                  height: '10px', 
+                  borderRadius: '50%', 
+                  backgroundColor: predictions[0].level === 'high' ? '#D8312C' : 
+                                  predictions[0].level === 'medium' ? '#F5BE00' : 
+                                  '#00A3E0',
+                  boxShadow: '0 0 4px rgba(0, 0, 0, 0.3)'
+                }} />
+              )}
+              <Button variant="primary" isIconOnly aria-label="Status">
+                {getHeaderIcon()}
+              </Button>
+            </FlexBox>
           </FlexBox>
         </CardHeader>
       </div>
