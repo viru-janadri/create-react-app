@@ -11,7 +11,6 @@ import {
 import {
   backgroundPrimary,
   separatorHorizontal,
-  iconSmall
 } from "@filament-theme/atomics";
 import { base } from "@filament-theme/base";
 import {
@@ -240,7 +239,7 @@ export default function App() {
               <hr className={separatorHorizontal} style={{ margin: '0.5rem 0' }} />
 
               <div style={{ display: 'flex' }}>
-                {/* Left sidebar column with sky blue background */}
+                {/* Left sidebar column */}
                 <div style={{ 
                   width: '80px', 
                   borderRight: '1px solid var(--color-neutral-20)',
@@ -248,7 +247,7 @@ export default function App() {
                   flexDirection: 'column',
                   alignItems: 'center',
                   paddingTop: '1rem',
-                  backgroundColor: '#F0F7FF'  // Sky blue background color
+                  backgroundColor: '#F0F7FF' 
                 }}>
                   {/* Bell icon */}
                   <Button 
