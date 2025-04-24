@@ -6,6 +6,7 @@ import {
   Laptop,
   Clock,
   QuestionmarkCircleOutline,
+
 } from "@filament-icons/dls4-react";
 import {
   backgroundPrimary,
@@ -24,11 +25,9 @@ import {
   NavigationBarTitle,
   Portal,
 } from "@filament/react";
-
 import { AiBoxLabel,
   Alarm as AlarmIcon,
  } from '@filament-icons/react';
-
 import clsx from "clsx";
 
 import { accentOrangeDark } from "@filament/theme/styles/accent/orange-dark";
@@ -241,14 +240,15 @@ export default function App() {
               <hr className={separatorHorizontal} style={{ margin: '0.5rem 0' }} />
 
               <div style={{ display: 'flex' }}>
-                {/* Left sidebar column */}
+                {/* Left sidebar column with sky blue background */}
                 <div style={{ 
                   width: '80px', 
                   borderRight: '1px solid var(--color-neutral-20)',
                   display: 'flex',
                   flexDirection: 'column',
                   alignItems: 'center',
-                  paddingTop: '1rem'
+                  paddingTop: '1rem',
+                  backgroundColor: '#F0F7FF'  // Sky blue background color
                 }}>
                   {/* Bell icon */}
                   <Button 
@@ -257,23 +257,25 @@ export default function App() {
                     onPress={handleBellClick}
                     style={{ marginBottom: '1rem' }}
                   >
-                    <AlarmIcon  style={{
+                    <AlarmIcon style={{
                       fontSize: '32px', 
                       width: '32px', 
-                      height: '32px',
-                      }}/>
+                      height: '32px'
+                    }}/>
                   </Button>
 
+                  {/* AI Box Label icon */}
                   <Button
                     variant="quiet" 
-                    aria-label="AI button">
-                      <AiBoxLabel style={{
+                    aria-label="AI button"
+                    style={{ marginBottom: '1rem' }}
+                  >
+                    <AiBoxLabel style={{
                       fontSize: '32px', 
                       width: '32px', 
-                      height: '32px',
-                      }}/>
-                    </Button>
-                    
+                      height: '32px'
+                    }}/>
+                  </Button>
                   
                   {/* Space for future items */}
                 </div>
