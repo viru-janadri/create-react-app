@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 import {
   FlexBox,
   H3,
@@ -8,7 +8,7 @@ import {
   TabContext,
   Tabs,
   Button,
-  H4
+  H4,
 } from "@filament/react";
 import {
   GenderMale,
@@ -24,7 +24,7 @@ import {
   Print,
   Laptop,
   QuestionmarkCircleOutline,
-  Cross16
+  Cross16,
 } from "@filament-icons/dls4-react";
 import { iconSmall, separatorHorizontal } from "@filament-theme/atomics";
 import * as styles from "../styles";
@@ -39,87 +39,197 @@ interface PatientDetailViewProps {
 interface Alarm {
   time: string;
   device: string;
-  deviceType: 'agw' | 'carescape' | 'evita'; // Device type for icon selection
-  type: 'info' | 'error' | 'warning';
+  deviceType: "agw" | "carescape" | "evita"; // Device type for icon selection
+  type: "info" | "error" | "warning";
   description: string;
   addressed: boolean; // Whether the alarm has been addressed
 }
 
-const PatientDetailView: React.FC<PatientDetailViewProps> = ({ 
-  patientId, 
-  patientName
+const PatientDetailView: React.FC<PatientDetailViewProps> = ({
+  patientId,
+  patientName,
 }) => {
   // Mock data - in a real app, this would come from props or API
   const patientData = {
     id: patientId,
     name: patientName,
-    gender: 'Male',
-    age: '17 years',
-    days: '0',
-    mrn: '20000010',
-    icuBed: '10',
-    date: '23 NOV 2018',
-    time: '4:30 AM',
+    gender: "Male",
+    age: "17 years",
+    days: "0",
+    mrn: "20000010",
+    icuBed: "10",
+    date: "23 NOV 2018",
+    time: "4:30 AM",
     agwData: [
-      { channel: 'P1', value: '15 mL/h', eoi: '00:01:06 EOI' },
-      { channel: 'P2', value: '27 mL/h', eoi: '00:02:59 EOI' },
-      { channel: 'P3', value: '37 mL/h', eoi: '00:03:31 EOI' },
-      { channel: 'P4', value: '46 mcg/h, 0.92 mL/h, 50 mcg/mL', eoi: '00:04:35 EOI' },
-      { channel: 'P5', value: '2 mmol/h, 0.2 mL/h, 10 mmol/mL', eoi: '00:37:38 EOI' },
-      { channel: 'P6', value: '18 mmol/h, 1.8 mL/h, 10 mmol/mL', eoi: '00:01:40 EOI' }
+      { channel: "P1", value: "15 mL/h", eoi: "00:01:06 EOI" },
+      { channel: "P2", value: "27 mL/h", eoi: "00:02:59 EOI" },
+      { channel: "P3", value: "37 mL/h", eoi: "00:03:31 EOI" },
+      {
+        channel: "P4",
+        value: "46 mcg/h, 0.92 mL/h, 50 mcg/mL",
+        eoi: "00:04:35 EOI",
+      },
+      {
+        channel: "P5",
+        value: "2 mmol/h, 0.2 mL/h, 10 mmol/mL",
+        eoi: "00:37:38 EOI",
+      },
+      {
+        channel: "P6",
+        value: "18 mmol/h, 1.8 mL/h, 10 mmol/mL",
+        eoi: "00:01:40 EOI",
+      },
     ],
     carescapeData: [
-      { channel: 'HR ECG', value: '63 bpm' },
-      { channel: 'Art', value: '128/73 (91) mm Hg' },
-      { channel: 'NIBP', value: '123/75 (91) mm Hg' },
-      { channel: 'SPO2 Art', value: '92 %' }
+      { channel: "HR ECG", value: "63 bpm" },
+      { channel: "Art", value: "128/73 (91) mm Hg" },
+      { channel: "NIBP", value: "123/75 (91) mm Hg" },
+      { channel: "SPO2 Art", value: "92 %" },
     ],
     evitaData: [
-      { channel: 'RR', value: '20.68 bpm' },
-      { channel: 'PEEP', value: '39 cm H2O' },
-      { channel: 'Pl mean', value: '100 cm H2O' },
-      { channel: 'VTe', value: '356.09 mL' },
-      { channel: 'MVe', value: '4.52 L/min' }
+      { channel: "RR", value: "20.68 bpm" },
+      { channel: "PEEP", value: "39 cm H2O" },
+      { channel: "Pl mean", value: "100 cm H2O" },
+      { channel: "VTe", value: "356.09 mL" },
+      { channel: "MVe", value: "4.52 L/min" },
     ],
     // Enhanced alarms with device type and addressed status
     alarms: [
-      { time: '10:46', device: 'AGW', deviceType: 'agw', type: 'warning', description: 'End: P2: Near End Of Infusion', addressed: true },
-      { time: '10:46', device: 'CARESCAPE', deviceType: 'carescape', type: 'error', description: 'End: Arterial Blood Pressure too high', addressed: true },
-      { time: '10:46', device: 'CARESCAPE', deviceType: 'carescape', type: 'info', description: 'End: ECG Sensor Warning', addressed: true },
-      { time: '10:46', device: 'AGW', deviceType: 'agw', type: 'warning', description: 'Near End Of Infusion', addressed: false },
-      { time: '10:46', device: 'CARESCAPE', deviceType: 'carescape', type: 'error', description: 'Arterial Blood Pressure too high', addressed: false },
-      { time: '10:46', device: 'CARESCAPE', deviceType: 'carescape', type: 'info', description: 'ECG Sensor Warning', addressed: false },
-      { time: '10:46', device: 'CARESCAPE', deviceType: 'carescape', type: 'error', description: 'End: Arterial Blood Pressure too high', addressed: true },
-      { time: '10:46', device: 'CARESCAPE', deviceType: 'carescape', type: 'info', description: 'End: ECG Sensor Warning', addressed: true },
-      { time: '10:45', device: 'CARESCAPE', deviceType: 'carescape', type: 'error', description: 'Arterial Blood Pressure too high', addressed: false },
-      { time: '10:45', device: 'CARESCAPE', deviceType: 'carescape', type: 'info', description: 'ECG Sensor Warning', addressed: false },
-      { time: '10:45', device: 'CARESCAPE', deviceType: 'carescape', type: 'error', description: 'End: Arterial Blood Pressure too high', addressed: true },
-      { time: '10:45', device: 'CARESCAPE', deviceType: 'carescape', type: 'info', description: 'End: ECG Sensor Warning', addressed: true },
-      { time: '10:45', device: 'CARESCAPE', deviceType: 'carescape', type: 'error', description: 'Arterial Blood Pressure too high', addressed: false },
-      { time: '10:45', device: 'CARESCAPE', deviceType: 'carescape', type: 'info', description: 'ECG Sensor Warning', addressed: false }
-    ] as Alarm[]
+      {
+        time: "10:46",
+        device: "AGW",
+        deviceType: "agw",
+        type: "warning",
+        description: "End: P2: Near End Of Infusion",
+        addressed: true,
+      },
+      {
+        time: "10:46",
+        device: "CARESCAPE",
+        deviceType: "carescape",
+        type: "error",
+        description: "End: Arterial Blood Pressure too high",
+        addressed: true,
+      },
+      {
+        time: "10:46",
+        device: "CARESCAPE",
+        deviceType: "carescape",
+        type: "info",
+        description: "End: ECG Sensor Warning",
+        addressed: true,
+      },
+      {
+        time: "10:46",
+        device: "AGW",
+        deviceType: "agw",
+        type: "warning",
+        description: "Near End Of Infusion",
+        addressed: false,
+      },
+      {
+        time: "10:46",
+        device: "CARESCAPE",
+        deviceType: "carescape",
+        type: "error",
+        description: "Arterial Blood Pressure too high",
+        addressed: false,
+      },
+      {
+        time: "10:46",
+        device: "CARESCAPE",
+        deviceType: "carescape",
+        type: "info",
+        description: "ECG Sensor Warning",
+        addressed: false,
+      },
+      {
+        time: "10:46",
+        device: "CARESCAPE",
+        deviceType: "carescape",
+        type: "error",
+        description: "End: Arterial Blood Pressure too high",
+        addressed: true,
+      },
+      {
+        time: "10:46",
+        device: "CARESCAPE",
+        deviceType: "carescape",
+        type: "info",
+        description: "End: ECG Sensor Warning",
+        addressed: true,
+      },
+      {
+        time: "10:45",
+        device: "CARESCAPE",
+        deviceType: "carescape",
+        type: "error",
+        description: "Arterial Blood Pressure too high",
+        addressed: false,
+      },
+      {
+        time: "10:45",
+        device: "CARESCAPE",
+        deviceType: "carescape",
+        type: "info",
+        description: "ECG Sensor Warning",
+        addressed: false,
+      },
+      {
+        time: "10:45",
+        device: "CARESCAPE",
+        deviceType: "carescape",
+        type: "error",
+        description: "End: Arterial Blood Pressure too high",
+        addressed: true,
+      },
+      {
+        time: "10:45",
+        device: "CARESCAPE",
+        deviceType: "carescape",
+        type: "info",
+        description: "End: ECG Sensor Warning",
+        addressed: true,
+      },
+      {
+        time: "10:45",
+        device: "CARESCAPE",
+        deviceType: "carescape",
+        type: "error",
+        description: "Arterial Blood Pressure too high",
+        addressed: false,
+      },
+      {
+        time: "10:45",
+        device: "CARESCAPE",
+        deviceType: "carescape",
+        type: "info",
+        description: "ECG Sensor Warning",
+        addressed: false,
+      },
+    ] as Alarm[],
   };
 
   // Track current filter states
-  const [currentRange, setCurrentRange] = useState('1hour');
-  const [currentEventType, setCurrentEventType] = useState('all');
-  const [currentDeviceType, setCurrentDeviceType] = useState('all');
-  
+  const [currentRange, setCurrentRange] = useState("1hour");
+  const [currentEventType, setCurrentEventType] = useState("all");
+  const [currentDeviceType, setCurrentDeviceType] = useState("all");
+
   // Selected tab state
-  const [selectedTab, setSelectedTab] = useState('alarms');
+  const [selectedTab, setSelectedTab] = useState("alarms");
 
   // Get device icon based on device type - returns the device icon without cross mark
   const getDeviceIcon = (deviceType: string) => {
     // Select the appropriate icon based on device type
     let DeviceIcon;
     switch (deviceType) {
-      case 'agw':
+      case "agw":
         DeviceIcon = ContrastLiquid32;
         break;
-      case 'carescape':
+      case "carescape":
         DeviceIcon = Ecg;
         break;
-      case 'evita':
+      case "evita":
         DeviceIcon = Bed;
         break;
       default:
@@ -127,8 +237,20 @@ const PatientDetailView: React.FC<PatientDetailViewProps> = ({
     }
 
     return (
-      <div style={{ position: 'relative', width: '24px', height: '24px', display: 'inline-flex', alignItems: 'center', justifyContent: 'center' }}>
-        <DeviceIcon className={iconSmall} style={{ display: 'block', color: 'currentColor' }} />
+      <div
+        style={{
+          position: "relative",
+          width: "24px",
+          height: "24px",
+          display: "inline-flex",
+          alignItems: "center",
+          justifyContent: "center",
+        }}
+      >
+        <DeviceIcon
+          className={iconSmall}
+          style={{ display: "block", color: "currentColor" }}
+        />
       </div>
     );
   };
@@ -137,21 +259,32 @@ const PatientDetailView: React.FC<PatientDetailViewProps> = ({
   const getAlarmIcon = (alarmType: string, addressed: boolean) => {
     // Get color based on alarm type
     const color = getAlarmColor(alarmType);
-    
+
     return (
-      <div style={{ position: 'relative', width: '24px', height: '24px', display: 'inline-flex', alignItems: 'center', justifyContent: 'center' }}>
-        <AlarmIcon className={iconSmall} style={{ display: 'block', color }} />
+      <div
+        style={{
+          position: "relative",
+          width: "24px",
+          height: "24px",
+          display: "inline-flex",
+          alignItems: "center",
+          justifyContent: "center",
+        }}
+      >
+        <AlarmIcon className={iconSmall} style={{ display: "block", color }} />
         {addressed && (
-          <div style={{ 
-            position: 'absolute', 
-            top: 0, 
-            right: 0, 
-            width: '100%', 
-            height: '100%', 
-            display: 'flex', 
-            alignItems: 'center', 
-            justifyContent: 'center',
-          }}>
+          <div
+            style={{
+              position: "absolute",
+              top: 0,
+              right: 0,
+              width: "100%",
+              height: "100%",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
             <Cross16 className={iconSmall} />
           </div>
         )}
@@ -162,36 +295,46 @@ const PatientDetailView: React.FC<PatientDetailViewProps> = ({
   // Get color for alarm description
   const getAlarmColor = (type: string) => {
     switch (type) {
-      case 'error':
-        return '#D8312C'; // Red for errors
-      case 'warning':
-        return '#F5BE00'; // Yellow for warnings
-      case 'info':
+      case "error":
+        return "#D8312C"; // Red for errors
+      case "warning":
+        return "#F5BE00"; // Yellow for warnings
+      case "info":
       default:
-        return '#00A3E0'; // Blue for info
+        return "#00A3E0"; // Blue for info
     }
   };
 
   return (
     <>
       {/* Improved Patient Info Banner - Full width with proper spacing */}
-      <div className={styles.patientInfoBanner} style={{ 
-        width: '100%', 
-        display: 'flex',
-        justifyContent: 'space-between'
-      }}>
-        <FlexBox alignItems="center" gap={16} style={{ width: '98%', justifyContent: 'space-between' }}>
+      <div
+        className={styles.patientInfoBanner}
+        style={{
+          width: "100%",
+          display: "flex",
+          justifyContent: "space-between",
+        }}
+      >
+        <FlexBox
+          alignItems="center"
+          gap={16}
+          style={{ width: "98%", justifyContent: "space-between" }}
+        >
           <H4>PATIENT {patientData.id}</H4>
-          
-          <FlexBox alignItems="center" gap={36} style={{ flexWrap: 'wrap' }}>
+
+          <FlexBox alignItems="center" gap={36} style={{ flexWrap: "wrap" }}>
             {/* Group 1 - Gender, Age, ID */}
             <FlexBox alignItems="center" gap={8}>
-              {patientData.gender === 'Male' ? 
-                <GenderMale /> : 
+              {patientData.gender === "Male" ? (
+                <GenderMale />
+              ) : (
                 <GenderFemale />
-              }
-              <FlexBox flexDirection="column" style={{ minWidth: '165px' }}>
-                <Label>Age: {patientData.age}  Day: {patientData.days}</Label>
+              )}
+              <FlexBox flexDirection="column" style={{ minWidth: "165px" }}>
+                <Label>
+                  Age: {patientData.age} Day: {patientData.days}
+                </Label>
                 <Label>ID: {patientData.id}</Label>
               </FlexBox>
             </FlexBox>
@@ -201,7 +344,7 @@ const PatientDetailView: React.FC<PatientDetailViewProps> = ({
               <Bed />
               <Label>ICU {patientData.icuBed}</Label>
             </FlexBox>
-            
+
             {/* Group 3 - Information circle */}
             <FlexBox alignItems="center" gap={8}>
               <InformationCircleOutline />
@@ -212,13 +355,13 @@ const PatientDetailView: React.FC<PatientDetailViewProps> = ({
               <PersonPortraitCircle />
               <Label>ADM</Label>
             </FlexBox>
-            
+
             {/* Group 5 - ICU CENTRAL */}
             <FlexBox alignItems="center" gap={8}>
               <Laptop />
               <Label>ICU CENTRAL</Label>
             </FlexBox>
-            
+
             {/* Group 6 - Time and Date */}
             <FlexBox alignItems="center" gap={8}>
               <Clock />
@@ -227,55 +370,74 @@ const PatientDetailView: React.FC<PatientDetailViewProps> = ({
                 <Label>{patientData.date}</Label>
               </FlexBox>
             </FlexBox>
-            
+
             {/* Group 7 - Question mark */}
             <QuestionmarkCircleOutline />
           </FlexBox>
         </FlexBox>
       </div>
-      <hr className={separatorHorizontal} style={{ margin: '0.5rem 0' }} />
+      <hr className={separatorHorizontal} style={{ margin: "0.5rem 0" }} />
 
       {/* Patient Detail Body - Two-column layout */}
       <div className={styles.patientDetailColumns}>
         {/* Left Column - Patient Vitals */}
         <div className={styles.patientDetailLeftColumn}>
           {/* Improved patient ID header with full width and separator */}
-          <div style={{ width: '100%', marginBottom: '0.75rem' }}>
-            <FlexBox 
-              alignItems="center" 
-              justifyContent="space-between" 
-              style={{ 
-                width: '100%', 
-                padding: '0.5rem 0.75rem',
-                backgroundColor: 'var(--color-background-primary)'
+          <div style={{ width: "100%", marginBottom: "0.75rem" }}>
+            <FlexBox
+              alignItems="center"
+              justifyContent="space-between"
+              style={{
+                width: "100%",
+                padding: "0.5rem 0.75rem",
+                backgroundColor: "var(--color-background-primary)",
               }}
             >
-              
               <FlexBox alignItems="center" gap={32}>
                 <H3>{patientData.id}</H3>
                 <FlexBox alignItems="center" gap={100}>
                   <Label>Patient {patientData.id}</Label>
-                  <Label variant="descriptor">{patientData.gender} {patientData.age.split(' ')[0]}y</Label>
+                  <Label variant="descriptor">
+                    {patientData.gender} {patientData.age.split(" ")[0]}y
+                  </Label>
                   <Label variant="descriptor">MRN: {patientData.mrn}</Label>
                 </FlexBox>
               </FlexBox>
             </FlexBox>
             {/* Horizontal separator below the header */}
-            <hr className={separatorHorizontal} style={{ margin: '0.5rem 0' }} />
+            <hr
+              className={separatorHorizontal}
+              style={{ margin: "0.5rem 0" }}
+            />
           </div>
 
           {/* AGW Section */}
           <div className={styles.deviceSection}>
-            <FlexBox alignItems="center" gap={8} className={styles.sectionHeading}>
-              <ContrastLiquid32 className={iconSmall} style={{ display: 'block', color: 'currentColor' }} />
-              <Label variant="descriptor" className={styles.sectionTitle}>AGW - Carefusion</Label>
+            <FlexBox
+              alignItems="center"
+              gap={8}
+              className={styles.sectionHeading}
+            >
+              <ContrastLiquid32
+                className={iconSmall}
+                style={{ display: "block", color: "currentColor" }}
+              />
+              <Label variant="descriptor" className={styles.sectionTitle}>
+                AGW - Carefusion
+              </Label>
             </FlexBox>
-            
+
             <div className={styles.deviceReadings}>
               {patientData.agwData.map((item, index) => (
-                <FlexBox key={index} justifyContent="space-between" className={styles.readingLine}>
+                <FlexBox
+                  key={index}
+                  justifyContent="space-between"
+                  className={styles.readingLine}
+                >
                   <FlexBox gap={8}>
-                    <Label style={{ fontWeight: 'bold', width: '3rem' }}>{item.channel}:</Label>
+                    <Label style={{ fontWeight: "bold", width: "3rem" }}>
+                      {item.channel}:
+                    </Label>
                     <Label>{item.value}</Label>
                   </FlexBox>
                   <Label variant="descriptor">{item.eoi}</Label>
@@ -288,16 +450,31 @@ const PatientDetailView: React.FC<PatientDetailViewProps> = ({
 
           {/* Carescape Section */}
           <div className={styles.deviceSection}>
-            <FlexBox alignItems="center" gap={8} className={styles.sectionHeading}>
-              <Ecg className={iconSmall} style={{ display: 'block', color: 'currentColor' }} />
-              <Label variant="descriptor" className={styles.sectionTitle}>Carescape B450 - GE</Label>
+            <FlexBox
+              alignItems="center"
+              gap={8}
+              className={styles.sectionHeading}
+            >
+              <Ecg
+                className={iconSmall}
+                style={{ display: "block", color: "currentColor" }}
+              />
+              <Label variant="descriptor" className={styles.sectionTitle}>
+                Carescape B450 - GE
+              </Label>
             </FlexBox>
-            
+
             <div className={styles.deviceReadings}>
               {patientData.carescapeData.map((item, index) => (
-                <FlexBox key={index} justifyContent="space-between" className={styles.readingLine}>
+                <FlexBox
+                  key={index}
+                  justifyContent="space-between"
+                  className={styles.readingLine}
+                >
                   <FlexBox gap={8}>
-                    <Label style={{ fontWeight: 'bold', width: '4.5rem' }}>{item.channel}:</Label>
+                    <Label style={{ fontWeight: "bold", width: "4.5rem" }}>
+                      {item.channel}:
+                    </Label>
                     <Label>{item.value}</Label>
                   </FlexBox>
                 </FlexBox>
@@ -309,16 +486,31 @@ const PatientDetailView: React.FC<PatientDetailViewProps> = ({
 
           {/* Evita Section */}
           <div className={styles.deviceSection}>
-            <FlexBox alignItems="center" gap={8} className={styles.sectionHeading}>
-              <Bed className={iconSmall} style={{ display: 'block', color: 'currentColor' }} />
-              <Label variant="descriptor" className={styles.sectionTitle}>Evita 4 - Drager</Label>
+            <FlexBox
+              alignItems="center"
+              gap={8}
+              className={styles.sectionHeading}
+            >
+              <Bed
+                className={iconSmall}
+                style={{ display: "block", color: "currentColor" }}
+              />
+              <Label variant="descriptor" className={styles.sectionTitle}>
+                Evita 4 - Drager
+              </Label>
             </FlexBox>
-            
+
             <div className={styles.deviceReadings}>
               {patientData.evitaData.map((item, index) => (
-                <FlexBox key={index} justifyContent="space-between" className={styles.readingLine}>
+                <FlexBox
+                  key={index}
+                  justifyContent="space-between"
+                  className={styles.readingLine}
+                >
                   <FlexBox gap={8}>
-                    <Label style={{ fontWeight: 'bold', width: '4.5rem' }}>{item.channel}:</Label>
+                    <Label style={{ fontWeight: "bold", width: "4.5rem" }}>
+                      {item.channel}:
+                    </Label>
                     <Label>{item.value}</Label>
                   </FlexBox>
                 </FlexBox>
@@ -330,83 +522,138 @@ const PatientDetailView: React.FC<PatientDetailViewProps> = ({
 
           {/* More Devices */}
           <FlexBox alignItems="center" gap={8} className={styles.moreDevices}>
-            <MoreHorizontal className={iconSmall} style={{ display: 'block', color: 'currentColor' }} />
+            <MoreHorizontal
+              className={iconSmall}
+              style={{ display: "block", color: "currentColor" }}
+            />
             <Label>More devices</Label>
           </FlexBox>
         </div>
 
         {/* Right Column - Alarms & Charts */}
         <div className={styles.patientDetailRightColumn}>
-          <FlexBox justifyContent="space-between" alignItems="center" className={styles.rightColumnHeader}>
+          <FlexBox
+            justifyContent="space-between"
+            alignItems="center"
+            className={styles.rightColumnHeader}
+          >
             {/* Main Tabs */}
-            <TabContext defaultSelectedKey={selectedTab} onSelectionChange={(key) => setSelectedTab(String(key))}>
-                <Tabs isFullWidth>
-                  <Item key="alarms">Alarm and events</Item>
-                  <Item key="vitals">Vital Signs</Item>
-                  <Item key="charts">Charts</Item>
-                </Tabs>
-              </TabContext>
-            
+            <TabContext
+              defaultSelectedKey={selectedTab}
+              onSelectionChange={(key) => setSelectedTab(String(key))}
+            >
+              <Tabs isFullWidth>
+                <Item key="alarms">Alarm and events</Item>
+                <Item key="vitals">Vital Signs</Item>
+                <Item key="charts">Charts</Item>
+              </Tabs>
+            </TabContext>
+
             <Button variant="quiet" aria-label="Print">
-              <Print className={iconSmall} style={{ display: 'block', color: 'currentColor' }} />
+              <Print
+                className={iconSmall}
+                style={{ display: "block", color: "currentColor" }}
+              />
             </Button>
           </FlexBox>
 
           {/* Tab Content based on selection */}
-          {selectedTab === 'alarms' && (
+          {selectedTab === "alarms" && (
             <>
               <div className={styles.filterSection}>
                 {/* Range Filter */}
                 <FlexBox alignItems="center" gap={8}>
                   <Label>Range:</Label>
-                  <TabContext defaultSelectedKey={currentRange} onSelectionChange={(key) => setCurrentRange(String(key))}>
-                      <Tabs>
-                        <Item key="1hour">1 hour</Item>
-                        <Item key="6hours">6 hours</Item>
-                        <Item key="12hours">12 hours</Item>
-                        <Item key="1day">1 day</Item>
-                        <Item key="7days">7 days</Item>
-                        <Item key="all">all</Item>
-                      </Tabs>
-                    </TabContext>
+                  <TabContext
+                    defaultSelectedKey={currentRange}
+                    onSelectionChange={(key) => setCurrentRange(String(key))}
+                  >
+                    <Tabs>
+                      <Item key="1hour">1 hour</Item>
+                      <Item key="6hours">6 hours</Item>
+                      <Item key="12hours">12 hours</Item>
+                      <Item key="1day">1 day</Item>
+                      <Item key="7days">7 days</Item>
+                      <Item key="all">all</Item>
+                    </Tabs>
+                  </TabContext>
                 </FlexBox>
 
                 {/* Event Type Filter */}
-                <FlexBox alignItems="center" gap={8} style={{ marginTop: '12px' }}>
+                <FlexBox
+                  alignItems="center"
+                  gap={8}
+                  style={{ marginTop: "12px" }}
+                >
                   <Label>Event:</Label>
-                  <TabContext defaultSelectedKey={currentEventType} onSelectionChange={(key) => setCurrentEventType(String(key))}>
+                  <TabContext
+                    defaultSelectedKey={currentEventType}
+                    onSelectionChange={(key) =>
+                      setCurrentEventType(String(key))
+                    }
+                  >
                     <Tabs>
                       <Item key="all">all</Item>
                       <Item key="info">
-                        <InformationCircleOutline className={iconSmall} style={{ display: 'block', color: 'currentColor' }} />
+                        <InformationCircleOutline
+                          className={iconSmall}
+                          style={{ display: "block", color: "currentColor" }}
+                        />
                       </Item>
                       <Item key="warning">
-                        <AlarmIcon className={iconSmall} style={{ color: '#00A3E0', display: 'block' }} />
+                        <AlarmIcon
+                          className={iconSmall}
+                          style={{ color: "#00A3E0", display: "block" }}
+                        />
                       </Item>
                       <Item key="caution">
-                        <AlarmIcon className={iconSmall} style={{ color: '#F5BE00', display: 'block' }} />
+                        <AlarmIcon
+                          className={iconSmall}
+                          style={{ color: "#F5BE00", display: "block" }}
+                        />
                       </Item>
                       <Item key="error">
-                        <AlarmIcon className={iconSmall} style={{ color: '#D8312C', display: 'block' }} />
+                        <AlarmIcon
+                          className={iconSmall}
+                          style={{ color: "#D8312C", display: "block" }}
+                        />
                       </Item>
                     </Tabs>
                   </TabContext>
                 </FlexBox>
 
                 {/* Device Filter */}
-                <FlexBox alignItems="center" gap={8} style={{ marginTop: '12px' }}>
+                <FlexBox
+                  alignItems="center"
+                  gap={8}
+                  style={{ marginTop: "12px" }}
+                >
                   <Label>Devices:</Label>
-                  <TabContext defaultSelectedKey={currentDeviceType} onSelectionChange={(key) => setCurrentDeviceType(String(key))}>
+                  <TabContext
+                    defaultSelectedKey={currentDeviceType}
+                    onSelectionChange={(key) =>
+                      setCurrentDeviceType(String(key))
+                    }
+                  >
                     <Tabs>
                       <Item key="all">all</Item>
                       <Item key="agw">
-                        <ContrastLiquid32 className={iconSmall} style={{ display: 'block', color: 'currentColor' }} />
+                        <ContrastLiquid32
+                          className={iconSmall}
+                          style={{ display: "block", color: "currentColor" }}
+                        />
                       </Item>
                       <Item key="carescape">
-                        <Ecg className={iconSmall} style={{ display: 'block', color: 'currentColor' }} />
+                        <Ecg
+                          className={iconSmall}
+                          style={{ display: "block", color: "currentColor" }}
+                        />
                       </Item>
                       <Item key="evita">
-                        <Bed className={iconSmall} style={{ display: 'block', color: 'currentColor' }} />
+                        <Bed
+                          className={iconSmall}
+                          style={{ display: "block", color: "currentColor" }}
+                        />
                       </Item>
                     </Tabs>
                   </TabContext>
@@ -415,26 +662,39 @@ const PatientDetailView: React.FC<PatientDetailViewProps> = ({
 
               {/* Alarms Table */}
               <div className={styles.alarmTable}>
-                <div className={styles.tableHeader} style={{ gridTemplateColumns: '80px 60px 60px 1fr' }}>
+                <div
+                  className={styles.tableHeader}
+                  style={{ gridTemplateColumns: "80px 60px 60px 1fr" }}
+                >
                   <div className={styles.timeColumn}>Time</div>
                   <div className={styles.deviceColumn}>Device</div>
                   <div className={styles.deviceColumn}></div>
                   <div className={styles.descriptionColumn}>Description</div>
                 </div>
-                
+
                 {patientData.alarms.map((alarm, index) => (
-                  <div className={styles.tableRow} key={index} style={{ gridTemplateColumns: '80px 60px 60px 1fr' }}>
+                  <div
+                    className={styles.tableRow}
+                    key={index}
+                    style={{ gridTemplateColumns: "80px 60px 60px 1fr" }}
+                  >
                     <div className={styles.timeColumn}>{alarm.time}</div>
-                    <div className={styles.deviceColumn} style={{ display: 'flex', justifyContent: 'center' }}>
+                    <div
+                      className={styles.deviceColumn}
+                      style={{ display: "flex", justifyContent: "center" }}
+                    >
                       {getDeviceIcon(alarm.deviceType)}
                     </div>
-                    <div className={styles.deviceColumn} style={{ display: 'flex', justifyContent: 'center' }}>
+                    <div
+                      className={styles.deviceColumn}
+                      style={{ display: "flex", justifyContent: "center" }}
+                    >
                       {getAlarmIcon(alarm.type, alarm.addressed)}
                     </div>
-                    <div 
+                    <div
                       className={styles.descriptionColumn}
-                      style={{ 
-                        color: getAlarmColor(alarm.type)
+                      style={{
+                        color: getAlarmColor(alarm.type),
                       }}
                     >
                       {alarm.description}
@@ -445,11 +705,13 @@ const PatientDetailView: React.FC<PatientDetailViewProps> = ({
             </>
           )}
 
-          {selectedTab === 'vitals' && (
-            <Text marginY="1rem">Vital signs information would display here.</Text>
+          {selectedTab === "vitals" && (
+            <Text marginY="1rem">
+              Vital signs information would display here.
+            </Text>
           )}
 
-          {selectedTab === 'charts' && (
+          {selectedTab === "charts" && (
             <Text marginY="1rem">Patient charts would display here.</Text>
           )}
         </div>

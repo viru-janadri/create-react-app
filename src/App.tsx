@@ -6,7 +6,6 @@ import {
   Laptop,
   Clock,
   QuestionmarkCircleOutline,
-
 } from "@filament-icons/dls4-react";
 import {
   backgroundPrimary,
@@ -24,9 +23,7 @@ import {
   NavigationBarTitle,
   Portal,
 } from "@filament/react";
-import { AiBoxLabel,
-  Alarm as AlarmIcon,
- } from '@filament-icons/react';
+import { AiBoxLabel, Alarm as AlarmIcon } from "@filament-icons/react";
 import clsx from "clsx";
 
 import { accentOrangeDark } from "@filament/theme/styles/accent/orange-dark";
@@ -67,30 +64,40 @@ function useBreakpoints() {
 
 // Enum for application views
 enum AppView {
-  DASHBOARD = 'dashboard',
-  PATIENT_DETAIL = 'patient_detail',
-  SEARCH_PATIENT = 'search_patient'
+  DASHBOARD = "dashboard",
+  PATIENT_DETAIL = "patient_detail",
+  SEARCH_PATIENT = "search_patient",
 }
 
 // Sample patient names
 const PATIENT_NAMES = [
-  "Anderson", "Patel", "Rodriguez", "Smith",
-  "Johnson", "Wu", "Brown", "Garcia",
-  "Taylor", "Kim", "Williams", "Murphy"
+  "Anderson",
+  "Patel",
+  "Rodriguez",
+  "Smith",
+  "Johnson",
+  "Wu",
+  "Brown",
+  "Garcia",
+  "Taylor",
+  "Kim",
+  "Williams",
+  "Murphy",
 ];
-
-
 
 export default function App() {
   const [darkMode, setDarkMode] = useState(false);
   const { minWidth900 } = useBreakpoints();
-  
+
   //State for show/hide AI panel
   const [showAIPanel, setShowAIPanel] = useState(false);
 
   // State to track current view and selected patient
   const [currentView, setCurrentView] = useState<AppView>(AppView.DASHBOARD);
-  const [selectedPatient, setSelectedPatient] = useState<{id: number, name: string} | null>(null);
+  const [selectedPatient, setSelectedPatient] = useState<{
+    id: number;
+    name: string;
+  } | null>(null);
 
   // Handler for opening patient detail view
   const handlePatientSelect = (id: number, name: string) => {
@@ -103,7 +110,7 @@ export default function App() {
     setCurrentView(AppView.DASHBOARD);
     setSelectedPatient(null);
   };
-  
+
   // Handler for opening search page
   const handleOpenSearch = () => {
     setCurrentView(AppView.SEARCH_PATIENT);
@@ -139,14 +146,32 @@ export default function App() {
                 <FlexBox alignItems="center" gap={8}>
                   {/* Show back button in detail view */}
                   {currentView === AppView.PATIENT_DETAIL && (
-                    <Button 
-                      variant="quiet" 
+                    <Button
+                      variant="quiet"
                       aria-label="Back to patient list"
                       onPress={handleBackToGrid}
                     >
-                      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M19 12H5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                        <path d="M12 19L5 12L12 5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                      <svg
+                        width="24"
+                        height="24"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M19 12H5"
+                          stroke="currentColor"
+                          strokeWidth="2"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                        />
+                        <path
+                          d="M12 19L5 12L12 5"
+                          stroke="currentColor"
+                          strokeWidth="2"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                        />
                       </svg>
                     </Button>
                   )}
@@ -169,9 +194,9 @@ export default function App() {
               >
                 {darkMode ? <Moon /> : <Brightness />}
               </Button>
-              
-              <Button 
-                variant="quiet" 
+
+              <Button
+                variant="quiet"
                 onPress={() => {
                   console.log("About button clicked");
                 }}
@@ -184,118 +209,153 @@ export default function App() {
             </FlexBox>
           </NavigationBar>
         </header>
-                
+
         <main className={clsx(backgroundPrimary, styles.content)}>
           {currentView === AppView.SEARCH_PATIENT ? (
             /* Render search patient page */
-            <SearchPatientPage 
-              onSelectPatient={handlePatientSelect}
-            />
+            <SearchPatientPage onSelectPatient={handlePatientSelect} />
           ) : currentView === AppView.PATIENT_DETAIL && selectedPatient ? (
             /* Render patient detail view */
-            <PatientDetailView 
-              patientId={selectedPatient.id} 
-              patientName={selectedPatient.name} 
+            <PatientDetailView
+              patientId={selectedPatient.id}
+              patientName={selectedPatient.name}
             />
           ) : (
             /* Render patient grid with search button banner */
             <>
               {/* Patient Info Banner with Search Button */}
-              <div className={styles.patientInfoBanner} style={{ 
-                width: '100%', 
-                display: 'flex',
-                justifyContent: 'space-between'
-              }}>
-                <FlexBox alignItems="center" gap={16} style={{ width: '98%', justifyContent: 'space-between' }}>
-                  <Button 
+              <div
+                className={styles.patientInfoBanner}
+                style={{
+                  width: "100%",
+                  display: "flex",
+                  justifyContent: "space-between",
+                }}
+              >
+                <FlexBox
+                  alignItems="center"
+                  gap={16}
+                  style={{ width: "98%", justifyContent: "space-between" }}
+                >
+                  <Button
                     variant="primary"
                     onPress={handleOpenSearch}
-                    style={{ display: 'flex', alignItems: 'center', gap: '8px' }}
+                    style={{
+                      display: "flex",
+                      alignItems: "center",
+                      gap: "8px",
+                    }}
                   >
                     Choose Patient...
                   </Button>
-                  
-                  <FlexBox alignItems="center" gap={36} style={{ flexWrap: 'wrap' }}>
+
+                  <FlexBox
+                    alignItems="center"
+                    gap={36}
+                    style={{ flexWrap: "wrap" }}
+                  >
                     {/* Group 4 - ADM */}
                     <FlexBox alignItems="center" gap={8}>
                       <PersonPortraitCircle />
                       <Label>ADM</Label>
                     </FlexBox>
-                    
+
                     {/* Group 5 - ICU CENTRAL */}
                     <FlexBox alignItems="center" gap={8}>
                       <Laptop />
                       <Label>ICU CENTRAL</Label>
                     </FlexBox>
-                    
+
                     {/* Group 6 - Time and Date */}
                     <FlexBox alignItems="center" gap={8}>
                       <Clock />
                       <FlexBox flexDirection="column">
-                        <Label>{new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</Label>
-                        <Label>{new Date().toLocaleDateString([], { day: '2-digit', month: 'short', year: 'numeric' }).toUpperCase()}</Label>
+                        <Label>
+                          {new Date().toLocaleTimeString([], {
+                            hour: "2-digit",
+                            minute: "2-digit",
+                          })}
+                        </Label>
+                        <Label>
+                          {new Date()
+                            .toLocaleDateString([], {
+                              day: "2-digit",
+                              month: "short",
+                              year: "numeric",
+                            })
+                            .toUpperCase()}
+                        </Label>
                       </FlexBox>
                     </FlexBox>
-                    
+
                     {/* Group 7 - Question mark */}
                     <QuestionmarkCircleOutline />
                   </FlexBox>
                 </FlexBox>
               </div>
-              <hr className={separatorHorizontal} style={{ margin: '0.5rem 0' }} />
+              <hr
+                className={separatorHorizontal}
+                style={{ margin: "0.5rem 0" }}
+              />
 
-              <div style={{ display: 'flex' }}>
+              <div style={{ display: "flex" }}>
                 {/* Left sidebar column */}
-                <div style={{ 
-                  width: '80px', 
-                  borderRight: '1px solid var(--color-neutral-20)',
-                  display: 'flex',
-                  flexDirection: 'column',
-                  alignItems: 'center',
-                  paddingTop: '1rem',
-                  backgroundColor: '#F0F7FF' 
-                }}>
+                <div
+                  style={{
+                    width: "80px",
+                    borderRight: "1px solid var(--color-neutral-20)",
+                    display: "flex",
+                    flexDirection: "column",
+                    alignItems: "center",
+                    paddingTop: "1rem",
+                    backgroundColor: "#F0F7FF",
+                  }}
+                >
                   {/* Bell icon */}
-                  <Button 
-                    variant="quiet" 
+                  <Button
+                    variant="quiet"
                     aria-label="Notifications"
                     onPress={handleBellClick}
-                    style={{ marginBottom: '1rem' }}
+                    style={{ marginBottom: "1rem" }}
                   >
-                    <AlarmIcon style={{
-                      fontSize: '32px', 
-                      width: '32px', 
-                      height: '32px'
-                    }}/>
+                    <AlarmIcon
+                      style={{
+                        fontSize: "32px",
+                        width: "32px",
+                        height: "32px",
+                      }}
+                    />
                   </Button>
 
                   {/* AI Box Label icon */}
                   <Button
-                    variant="quiet" 
+                    variant="quiet"
                     aria-label="AI button"
-                    style={{ marginBottom: '1rem' }}
+                    style={{ marginBottom: "1rem" }}
                     onPress={() => setShowAIPanel(!showAIPanel)}
                   >
-                    <AiBoxLabel style={{
-                      fontSize: '32px', 
-                      width: '32px', 
-                      height: '32px'
-                    }}/>
+                    <AiBoxLabel
+                      style={{
+                        fontSize: "32px",
+                        width: "32px",
+                        height: "32px",
+                      }}
+                    />
                   </Button>
-                  
-                   {/* Add the AI panel conditionally */}
-                {showAIPanel && (
-                  <AIInsightsPanel onClose={() => setShowAIPanel(false)} />
-                )}
+
+                  {/* Add the AI panel conditionally */}
+                  {showAIPanel && (
+                    <AIInsightsPanel onClose={() => setShowAIPanel(false)} />
+                  )}
                   {/* Space for future items */}
                 </div>
-                
+
                 {/* Patient Grid */}
                 <div className={styles.cardGrid}>
                   {PATIENT_NAMES.map((name, i) => (
-                    <PatientCard 
-                      key={i} 
-                      id={i + 1} 
+                    <PatientCard
+                      key={i}
+                      id={i + 1}
                       name={name}
                       onHeaderClick={() => handlePatientSelect(i + 1, name)}
                     />
